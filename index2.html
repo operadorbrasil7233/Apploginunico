@@ -2,1728 +2,3232 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DTunnel_s
-        _t_project_edit</title>
-</head>
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        -webkit-tap-highlight-color: transparent;
-        font-family: 'Verdana', sans-serif;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+  <title>@MRSILENT1</title>
+
+  <style>
+    :root {
+      font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+      line-height: 1.5;
+      font-weight: 400;
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-size-adjust: 100%;
+      -webkit-text-size-adjust: 100%;
+
+      --space-status-bar: 10px;
+      --space-nav-bar: 33px;
+
+      --default-background-color: linear-gradient(135deg,
+          #6f0fd4,
+          #007a94,
+          #5417a0,
+          #008686,
+          #540fd1,
+          #299c9f,
+          #005d5d,
+          #5417a0,
+          #6f0fd4,
+          #007a94,
+          #5417a0,
+          #008686,
+          #540fd1,
+          #299c9f);
+      --connected-background-color: linear-gradient(135deg,
+          #05b76d,
+          #01ac66,
+          #008e52,
+          #30704b,
+          #00ff00,
+          #29ab87,
+          #00a86b,
+          #2e8b57,
+          #3f7046,
+          #3f7,
+          #008e52,
+          #30704b,
+          #00ff00,
+          #29ab87,
+          #00a86b,
+          #2e8b57,
+          #3f7046,
+          #3f7);
+      --connecting-background-color: linear-gradient(135deg,
+          #ffc823,
+          #f4b007,
+          #fff14a,
+          #eaa700,
+          #fc9200,
+          #ffcb05,
+          #feb308,
+          #ecc218,
+          #ffc823,
+          #f4b007,
+          #fff14a,
+          #eaa700,
+          #fc9200,
+          #ffcb05,
+          #feb308,
+          #ecc218);
+      --error-background-color: linear-gradient(135deg,
+          #e20807,
+          #d40000,
+          #9a001a,
+          #65100d,
+          #e20807,
+          #d40000,
+          #9a001a,
+          #65100d,
+          #e20807,
+          #d40000,
+          #9a001a,
+          #65100d,
+          #000000,
+          #ff0000,
+          #9a001a,
+          #e20807,
+          #65100d);
     }
 
-    ::placeholder {
-        color: #b0a8ffff;
+    @keyframes ButtonStartVpnAnimation {
+      0% {
+        background-position: 0;
+      }
 
+      100% {
+        background-position: 300%;
+      }
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    *,
+    *::after,
+    *::before {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
     }
 
     body {
-        height: 100vh;
-
+      background: linear-gradient(to bottom, #200d45, #55058c, #c49fdf);
+      padding-bottom: var(--space-nav-bar);
     }
 
-    @keyframes fade-in {
-        from {
-            opacity: 0;
-        }
-
-        to {
-            opacity: 1;
-        }
+    main {
+      width: auto;
+      height: 89%;
+      display: flex;
+      position: relative;
+      padding: 0 0 0 0;
+      overflow: hidden;
     }
 
-    @keyframes fade-out {
-        from {
-            opacity: 1;
-        }
+    section.home {
+      width: 100vw;
+      min-width: 100%;
+      height: 100%;
 
-        to {
-            opacity: 0;
-        }
+      display: flex;
+      flex-direction: column;
+
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      opacity: 0;
+      transform: translateX(100%);
+
+      transition: opacity 0.3s ease, transform 0.3s ease;
+
+      overflow: hidden;
     }
 
-    @keyframes pulse {
-        0% {
-            transform: scale(1);
-            box-shadow: none;
-        }
+    section.home header {
+      width: 100%;
+      height: 20%;
+      max-height: 135px;
 
-        50% {
-            transform: scale(1.2);
-            box-shadow: 0 0 10px 5px #b0a8ffff;
-        }
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-        100% {
-            transform: scale(1);
-            box-shadow: none;
-        }
+      padding: var(--space-status-bar) 10px 0 10px;
+
+      background-image: url();
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
     }
 
-    .background {
-        background-color: #14142c;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='88' height='88' viewBox='0 0 88 88'%3E%3Cg fill='%23b0a8ff' fill-opacity='0.08'%3E%3Cpath fill-rule='evenodd' d='M29.42 29.41c.36-.36.58-.85.58-1.4V0h-4v26H0v4h28c.55 0 1.05-.22 1.41-.58h.01zm0 29.18c.36.36.58.86.58 1.4V88h-4V62H0v-4h28c.56 0 1.05.22 1.41.58zm29.16 0c-.36.36-.58.85-.58 1.4V88h4V62h26v-4H60c-.55 0-1.05.22-1.41.58h-.01zM62 26V0h-4v28c0 .55.22 1.05.58 1.41.37.37.86.59 1.41.59H88v-4H62zM18 36c0-1.1.9-2 2-2h10a2 2 0 1 1 0 4H20a2 2 0 0 1-2-2zm0 16c0-1.1.9-2 2-2h10a2 2 0 1 1 0 4H20a2 2 0 0 1-2-2zm16-26a2 2 0 0 1 2-2 2 2 0 0 1 2 2v4a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-4zm16 0a2 2 0 0 1 2-2 2 2 0 0 1 2 2v4a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-4zM34 58a2 2 0 0 1 2-2 2 2 0 0 1 2 2v4a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-4zm16 0a2 2 0 0 1 2-2 2 2 0 0 1 2 2v4a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-4zM34 78a2 2 0 0 1 2-2 2 2 0 0 1 2 2v6a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-6zm16 0a2 2 0 0 1 2-2 2 2 0 0 1 2 2v6a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-6zM34 4a2 2 0 0 1 2-2 2 2 0 0 1 2 2v6a2 2 0 0 1-2 2 2 2 0 0 1-2-2V4zm16 0a2 2 0 0 1 2-2 2 2 0 0 1 2 2v6a2 2 0 0 1-2 2 2 2 0 0 1-2-2V4zm-8 82a2 2 0 1 1 4 0v2h-4v-2zm0-68a2 2 0 1 1 4 0v10a2 2 0 1 1-4 0V18zM66 4a2 2 0 1 1 4 0v8a2 2 0 1 1-4 0V4zm0 72a2 2 0 1 1 4 0v8a2 2 0 1 1-4 0v-8zm-48 0a2 2 0 1 1 4 0v8a2 2 0 1 1-4 0v-8zm0-72a2 2 0 1 1 4 0v8a2 2 0 1 1-4 0V4zm24-4h4v2a2 2 0 1 1-4 0V0zm0 60a2 2 0 1 1 4 0v10a2 2 0 1 1-4 0V60zm14-24c0-1.1.9-2 2-2h10a2 2 0 1 1 0 4H58a2 2 0 0 1-2-2zm0 16c0-1.1.9-2 2-2h10a2 2 0 1 1 0 4H58a2 2 0 0 1-2-2zm-28-6a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm8 26a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm16 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM36 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm16 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm-8-8a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm0 68a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm16-34a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm16-12a2 2 0 1 0 0 4 6 6 0 1 1 0 12 2 2 0 1 0 0 4 10 10 0 1 0 0-20zm-64 0a2 2 0 1 1 0 4 6 6 0 1 0 0 12 2 2 0 1 1 0 4 10 10 0 1 1 0-20zm56-12a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm0 48a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm-48 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm0-48a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm24 32a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-4a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm36-36a6 6 0 1 1 0-12 6 6 0 0 1 0 12zm0-4a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM10 44c0-1.1.9-2 2-2h8a2 2 0 1 1 0 4h-8a2 2 0 0 1-2-2zm56 0c0-1.1.9-2 2-2h8a2 2 0 1 1 0 4h-8a2 2 0 0 1-2-2zm8 24c0-1.1.9-2 2-2h8a2 2 0 1 1 0 4h-8a2 2 0 0 1-2-2zM3 68c0-1.1.9-2 2-2h8a2 2 0 1 1 0 4H5a2 2 0 0 1-2-2zm0-48c0-1.1.9-2 2-2h8a2 2 0 1 1 0 4H5a2 2 0 0 1-2-2zm71 0c0-1.1.9-2 2-2h8a2 2 0 1 1 0 4h-8a2 2 0 0 1-2-2zm6 66a6 6 0 1 1 0-12 6 6 0 0 1 0 12zm0-4a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM8 86a6 6 0 1 1 0-12 6 6 0 0 1 0 12zm0-4a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm0-68A6 6 0 1 1 8 2a6 6 0 0 1 0 12zm0-4a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm36 36a2 2 0 1 0 0-4 2 2 0 0 0 0 4z'/%3E%3C/g%3E%3C/svg%3E");
+    section.home header img {
+      width: 80%;
     }
-</style>
-
-<body>
-    <div id="root" class="background">
-    </div>
-
-    <script>
-        const teste = ''
-        const BACKGROUND_COLOR = '#14142c';
-        const INPUT_COLOR = '#14142c'
-        const BUTTON_BACKGROUND_COLOR = '#14142c'
-        const ICON_COLOR = '#6205d5'
-        const TEXT_COLOR = '#b0a8ffff'
-
-        const TOOLS_BUTTON_BACKGROUND_COLOR = '#14142c'
-
-        const VPN_STATE_TEXT_COLOR = '#b0a8ffff'
-        const VPN_BUTTON_BACKGROUND_COLOR = '#14142c'
-
-        const CHECKUSER_TEXT_COLOR = '#b0a8ffff'
-        const LOGGER_TEXT_COLOR = '#b0a8ffff'
-
-        const DIALOG_HEADER_TITLE_COLOR = '#b0a8ffff'
-        const DIALOG_HEADER_CLOSE_BUTTON_COLOR = '#b0a8ffff'
-        const DIALOG_CONTENT_BACKGROUND_COLOR = '#14142c'
-        const DIALOG_FOOTER_BUTTON_COLOR = '#14142c'
-        const DIALOG_FOOTER_BUTTON_TEXT_COLOR = '#b0a8ffff'
-
-        const TERMS_URL = 'https://sshtproject.com/termos/'
-        const SERVER_URL = 'http://sshtproject.com/servers/'
-        const TUTO_URL = 'https://sshtproject.com/tutoriais/'
-        const SPEEDTEST_URL = 'https://www.speedtest.net/pt'
-        const PREMIUM_URL = 'https://sshtproject.com/premium/'
-
-        class Component {
-            constructor(element) {
-                this.element = element;
-            }
-
-            addEventListener(event, listener) {
-                this.element.addEventListener(event, listener);
-            }
-
-            append(component) {
-                if (component instanceof Component) {
-                    this.element.appendChild(component.element);
-                } else {
-                    this.element.append(component);
-                }
-            }
-
-            appendChild(component) {
-                if (component instanceof Component) {
-                    this.element.appendChild(component.element);
-                } else {
-                    this.element.appendChild(component);
-                }
-            }
-        }
-
-        class StyledComponent extends Component {
-            constructor(element, styles = {}) {
-                super(element);
-                this.styles = styles;
-                this.setStyles(styles);
-            }
-
-            setStyles(styles) {
-                Object.keys(styles).forEach((key) => {
-                    if (this.element.style.hasOwnProperty(key)) {
-                        this.element.style[key] = styles[key];
-                    }
-                });
-            }
-        }
-
-        class AppComponent extends StyledComponent {
-            constructor(element, styles = {}) {
-                const defaultStyles = {
-                    width: '100%',
-                    height: '100%',
-                    background: '#404258',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                };
-
-                super(element, { ...defaultStyles, ...styles });
-            }
-        }
-
-        class CardComponent extends StyledComponent {
-            constructor(styles = {}) {
-                const defaultStyles = {
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    width: '100%',
-                    maxWidth: '23rem',
-                    gap: '10px',
-                    margin: '1.2rem',
-                    padding: '5px',
-                    borderRadius: '5px',
-                    border: 'none',
-                };
-
-                super(document.createElement('div'), { ...defaultStyles, ...styles });
-            }
-        }
-
-        class InputGroupComponent extends StyledComponent {
-            constructor(styles = {}) {
-                const defaultStyles = {
-                    display: 'flex',
-                    width: '100%',
-                    alignItems: 'center',
-                    background: '#363749',
-                    color: '#b0a8ffff',
-                    padding: '0.2rem',
-                    height: '40px',
-                    borderRadius: '10px',
-                    boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
-                };
-
-                super(document.createElement('div'), { ...defaultStyles, ...styles });
-            }
-
-            append(...components) {
-                components.forEach((component) => super.append(component));
-            }
-        }
-
-        class InputComponent extends StyledComponent {
-            constructor(styles = {}) {
-                const defaultStyles = {
-                    background: 'transparent',
-                    border: 'none',
-                    width: '100%',
-                    outline: 'none',
-                    color: TEXT_COLOR,
-                    fontSize: '15px',
-                };
-
-                super(document.createElement('input'), { ...defaultStyles, ...styles });
-            }
-
-            setEnabled(value) {
-                this.element.disabled = !value;
-            }
-        }
-
-        class InputText extends InputComponent {
-            constructor(styles = {}) {
-                super(styles);
-                this.element.type = 'text';
-            }
-
-            get value() {
-                return this.element.value;
-            }
-
-            setPlaceholder(text) {
-                this.element.placeholder = text;
-            }
-
-            setOnInputListener(callback) {
-                this.addEventListener('input', callback);
-            }
-
-            setValue(value) {
-                this.element.value = value;
-            }
-
-            setOnInputListener(callback) {
-                this.addEventListener('input', callback);
-            }
-        }
-
-        class InputPassword extends InputText {
-            constructor(styles = {}) {
-                super(styles);
-                this.element.type = 'password';
-            }
-
-            setShowing(value) {
-                this.element.type = !value ? 'password' : 'text';
-            }
-
-            get isShowing() { return this.element.type != 'password' }
-        }
-
-        class SvgComponent extends StyledComponent {
-            constructor(styles = {}, ...paths) {
-                const defaultStyles = {
-                    fill: '#1210246b',
-                    padding: '5px',
-                    width: '35px',
-                    height: '35px',
-
-                };
-
-                super(document.createElementNS('http://www.w3.org/2000/svg', 'svg'), {
-                    ...defaultStyles,
-                    ...styles,
-                });
-
-                this.applyOptions();
-
-                paths.forEach((p) => this.addPath(p));
-            }
-
-            applyOptions() {
-                this.setFill(this.styles.fill || 'currentColor');
-                this.setWidth(this.styles.width || '16');
-                this.setHeight(this.styles.height || '16');
-                this.setViewBox(this.styles.viewBox || '0 0 16 16');
-                this.setXmlns(this.styles.xmlns || 'http://www.w3.org/2000/svg');
-            }
-
-            setFill(color) {
-                this.element.setAttribute('fill', color);
-            }
-
-            setWidth(width) {
-                this.element.setAttribute('width', width);
-            }
-
-            setHeight(height) {
-                this.element.setAttribute('height', height);
-            }
-
-            setViewBox(viewBox) {
-                this.element.setAttribute('viewBox', viewBox);
-            }
-
-            setXmlns(xmlns) {
-                this.element.setAttribute('xmlns', xmlns);
-            }
-
-            addPath(...path) {
-                path.forEach((item) => {
-                    const pathElement = document.createElementNS(
-                        'http://www.w3.org/2000/svg',
-                        'path'
-                    );
-                    pathElement.setAttribute('d', item);
-                    this.element.appendChild(pathElement);
-                });
-            }
-        }
-
-        class CalanderIconComponent extends SvgComponent {
-            constructor(styles = {}) {
-                super({
-                    cursor: 'pointer',
-                    background: TOOLS_BUTTON_BACKGROUND_COLOR,
-                    borderRadius: '20%',
-                    height: '45px',
-                    width: '45px',
-                    padding: '10px',
-                    boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
-                    fill: ICON_COLOR,
-                    ...styles,
-                },
-                    'M4.684 11.523v-2.3h2.261v-.61H4.684V6.801h2.464v-.61H4v5.332h.684zm3.296 0h.676V8.98c0-.554.227-1.007.953-1.007.125 0 .258.004.329.015v-.613a1.806 1.806 0 0 0-.254-.02c-.582 0-.891.32-1.012.567h-.02v-.504H7.98v4.105zm2.805-5.093c0 .238.192.425.43.425a.428.428 0 1 0 0-.855.426.426 0 0 0-.43.43zm.094 5.093h.672V7.418h-.672v4.105z',
-                    'M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z'
-                );
-            }
-        }
-
-        class LoggerIconComponent extends SvgComponent {
-            constructor(styles = {}) {
-                super({
-                    cursor: 'pointer',
-                    background: TOOLS_BUTTON_BACKGROUND_COLOR,
-                    borderRadius: '20%',
-                    height: '45px',
-                    width: '45px',
-                    padding: '10px',
-                    boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
-                    fill: ICON_COLOR,
-                    ...styles,
-                },
-                    'M5 4a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1H5zm-.5 2.5A.5.5 0 0 1 5 6h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zM5 8a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1H5zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1H5z',
-                    'M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm10-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1z'
-                );
-            }
-        }
-
-        class ArrowRepeatIconComponent extends SvgComponent {
-            constructor(styles = {}) {
-                super({
-                    cursor: 'pointer',
-                    background: TOOLS_BUTTON_BACKGROUND_COLOR,
-                    borderRadius: '20%',
-                    height: '45px',
-                    width: '45px',
-                    padding: '10px',
-                    boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
-                    fill: ICON_COLOR,
-                    ...styles,
-                },
-                    'M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z',
-                    'M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z'
-                );
-            }
-        }
-
-        class BatteryIconComponent extends SvgComponent {
-            constructor(styles = {}) {
-                super({
-                    cursor: 'pointer',
-                    background: TOOLS_BUTTON_BACKGROUND_COLOR,
-                    borderRadius: '20%',
-                    height: '45px',
-                    width: '45px',
-                    padding: '10px',
-                    boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
-                    fill: ICON_COLOR,
-                    ...styles,
-                },
-                    'M2 6h10v4H2V6z', 'M2 4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H2zm10 1a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h10zm4 3a1.5 1.5 0 0 1-1.5 1.5v-3A1.5 1.5 0 0 1 16 8z'
-                );
-            }
-        }
-
-        class SpeedMeterIconComponent extends SvgComponent {
-            constructor(styles = {}) {
-                super({
-                    cursor: 'pointer',
-                    background: TOOLS_BUTTON_BACKGROUND_COLOR,
-                    borderRadius: '20%',
-                    height: '45px',
-                    width: '45px',
-                    padding: '10px',
-                    boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
-                    fill: ICON_COLOR,
-                    ...styles,
-                },
-                    'M8 2a.5.5 0 0 1 .5.5V4a.5.5 0 0 1-1 0V2.5A.5.5 0 0 1 8 2zM3.732 3.732a.5.5 0 0 1 .707 0l.915.914a.5.5 0 1 1-.708.708l-.914-.915a.5.5 0 0 1 0-.707zM2 8a.5.5 0 0 1 .5-.5h1.586a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 8zm9.5 0a.5.5 0 0 1 .5-.5h1.5a.5.5 0 0 1 0 1H12a.5.5 0 0 1-.5-.5zm.754-4.246a.389.389 0 0 0-.527-.02L7.547 7.31A.91.91 0 1 0 8.85 8.569l3.434-4.297a.389.389 0 0 0-.029-.518z',
-                    'M6.664 15.889A8 8 0 1 1 9.336.11a8 8 0 0 1-2.672 15.78zm-4.665-4.283A11.945 11.945 0 0 1 8 10c2.186 0 4.236.585 6.001 1.606a7 7 0 1 0-12.002 0z'
-                );
-            }
-        }
-
-        class TrashIconComponent extends SvgComponent {
-            constructor(styles = {}) {
-                super({
-                    cursor: 'pointer',
-                    background: TOOLS_BUTTON_BACKGROUND_COLOR,
-                    borderRadius: '20%',
-                    height: '45px',
-                    width: '45px',
-                    padding: '10px',
-                    boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
-                    fill: ICON_COLOR,
-                    ...styles,
-                },
-                    'M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z',
-                    'M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z'
-                );
-            }
-        }
-
-        class ArrowDownIconComponent extends SvgComponent {
-            constructor(style = {}) {
-                super({
-                    fill: ICON_COLOR,
-                    ...style,
-                },
-                    'M1 3.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5zM8 6a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 .708-.708L7.5 12.293V6.5A.5.5 0 0 1 8 6z'
-                );
-            }
-        }
-
-        class NetworkIconComponent extends SvgComponent {
-            constructor(style = {}) {
-                super({
-                    fill: ICON_COLOR,
-                    ...style,
-                },
-                    'M4.5 5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1zM3 4.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z',
-                    'M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8.5v3a1.5 1.5 0 0 1 1.5 1.5h5.5a.5.5 0 0 1 0 1H10A1.5 1.5 0 0 1 8.5 14h-1A1.5 1.5 0 0 1 6 12.5H.5a.5.5 0 0 1 0-1H6A1.5 1.5 0 0 1 7.5 10V7H2a2 2 0 0 1-2-2V4zm1 0v1a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1zm6 7.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5z'
-                );
-            }
-        }
-
-        class PersonIconComponent extends SvgComponent {
-            constructor(style = {}) {
-                super({
-                    fill: ICON_COLOR,
-                    ...style,
-                },
-                    'M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z'
-                );
-            }
-        }
-
-        class LockIconComponent extends SvgComponent {
-            constructor(style = {}) {
-                super({
-                    fill: ICON_COLOR,
-                    ...style,
-                },
-                    'M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z'
-                );
-            }
-        }
-
-        class EyeIconComponent extends SvgComponent {
-            constructor(style = {}) {
-                super({
-                    fill: ICON_COLOR,
-                    ...style,
-                },
-                    'M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z',
-                    'M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z',
-                );
-            }
-        }
-
-        class ArrowDownShortIconComponent extends SvgComponent {
-            constructor(style = {}) {
-                super({
-                    fill: ICON_COLOR,
-                    ...style,
-                },
-                    'M8 4a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5A.5.5 0 0 1 8 4z'
-                );
-            }
-        }
-
-        class ArrowUpShortIconComponent extends SvgComponent {
-            constructor(style = {}) {
-                super({
-                    fill: ICON_COLOR,
-                    ...style,
-                },
-                    'M8 12a.5.5 0 0 0 .5-.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 .5.5z'
-                );
-            }
-        }
-
-        class PowerIconComponent extends SvgComponent {
-            constructor(style = {}) {
-                super({
-                    cursor: 'pointer',
-                    height: '7.5rem',
-                    width: '7.5rem',
-                    background: VPN_BUTTON_BACKGROUND_COLOR,
-                    borderRadius: '50%',
-                    boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
-                    padding: '20px',
-                    filter: 'drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5))',
-                    // animation: 'pulse 4s infinite',
-
-                    fill: ICON_COLOR,
-                    ...style,
-                },
-                    'M7.5 1v7h1V1h-1z',
-                    'M3 8.812a4.999 4.999 0 0 1 2.578-4.375l-.485-.874A6 6 0 1 0 11 3.616l-.501.865A5 5 0 1 1 3 8.812z',
-                );
-
-            }
-        }
-
-        class DialogComponent extends Component {
-            constructor() {
-                super(document.createElement('div'));
-                this.element.style.position = 'absolute';
-                this.element.style.top = '0';
-                this.element.style.bottom = '0';
-                this.element.style.left = '0';
-                this.element.style.right = '0';
-                this.element.style.height = '100vh';
-                this.element.style.background = 'rgba(0, 0, 0, 0.5)';
-                this.element.style.backdropFilter = 'blur(5px)';
-                this.element.style.display = 'flex';
-                this.element.style.alignItems = 'center';
-                this.element.style.justifyContent = 'center';
-                this.element.style.visibility = 'hidden';
-                this.element.style.opacity = '0';
-
-                this.element.addEventListener('click', (event) => {
-                    if (event.target === this.element) {
-                        this.close();
-                    }
-                });
-
-                this.onCloseEvent = null
-            }
-
-            setOnCloseEvent(callback) {
-                this.onCloseEvent = callback
-            }
-
-            setContent(content) {
-                if (!(content instanceof DialogContentComponent)) {
-                    throw new TypeError('Content must be a DialogContentComponent');
-                }
-
-                this.append(content);
-            }
-
-            close() {
-                this.element.style.opacity = '0';
-                this.element.style.animation = 'fade-out 0.3s forwards';
-
-
-
-                setTimeout(() => {
-                    this.element.style.display = 'none';
-                    this.element.style.pointerEvents = 'none';
-
-                    if (this.onCloseEvent != null) {
-                        this.onCloseEvent()
-                    }
-                }, 300);
-            }
-
-            show() {
-                this.element.style.opacity = '1';
-                this.element.style.visibility = 'visible';
-                this.element.style.display = 'flex';
-                this.element.style.animation = 'fade-in 0.3s forwards';
-                this.element.style.pointerEvents = 'auto';
-
-                if (!document.body.contains(this.element)) {
-                    document.body.append(this.element);
-                }
-            }
-        }
-
-        class DialogContentComponent extends StyledComponent {
-            constructor(styles = {}) {
-                super(document.createElement('div'), {
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    background: DIALOG_CONTENT_BACKGROUND_COLOR,
-                    borderRadius: '5px',
-                    maxWidth: '30rem',
-                    width: '85%',
-                    ...styles,
-                });
-            }
-
-            setHeader(component) {
-                if (!(component instanceof DialogHeaderComponent)) {
-                    throw new TypeError('Component must be a DialogHeaderComponent instance');
-                }
-
-                this.append(component);
-            }
-
-            setBody(component) {
-                if (!(component instanceof DialogBodyComponent)) {
-                    throw new TypeError('Component must be a DialogBodyComponent instance');
-                }
-
-                this.append(component);
-            }
-
-            setFooter(component) {
-                if (!(component instanceof DialogFooterComponent)) {
-                    throw new TypeError('Component must be a DialogFooterComponent instance');
-                }
-
-                this.append(component);
-            }
-        }
-
-        class DialogHeaderComponent extends StyledComponent {
-            constructor(styles = {}) {
-                super(document.createElement('div'), {
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    width: '100%',
-                    padding: '5px',
-                    ...styles,
-                });
-
-                this.title = new StyledComponent(document.createElement('span'), {
-                    fontSize: '16px',
-                    color: DIALOG_HEADER_TITLE_COLOR,
-                    fontFamily: 'Verdana',
-                    fontWeight: 'bold',
-                    padding: '5px',
-                });
-
-                this.closeButton = new SvgComponent({
-                    cursor: 'pointer',
-                    height: '35px',
-                    width: '35px',
-                    fill: DIALOG_HEADER_CLOSE_BUTTON_COLOR,
-                },
-                    'M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z'
-                );
-
-                this.initialize();
-            }
-
-            setTitleText(title) {
-                this.title.element.innerText = title;
-            }
-
-            setCloseButtonClickListener(callback) {
-                this.closeButton.addEventListener('click', callback);
-            }
-
-            initialize() {
-                this.append(this.title);
-                this.append(this.closeButton);
-            }
-        }
-
-        class DialogBodyComponent extends StyledComponent {
-            constructor(styles = {}) {
-                super(document.createElement('div'), {
-                    display: 'flex',
-                    width: '100%',
-                    padding: '5px',
-                    ...styles,
-                });
-            }
-        }
-
-        class DialogFooterComponent extends StyledComponent {
-            constructor(styles = {}) {
-                super(document.createElement('div'), {
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    gap: '5px',
-                    alignItems: 'center',
-                    width: '100%',
-                    padding: '5px',
-                    ...styles,
-                });
-            }
-
-            addButton(button) {
-                if (!(button instanceof DialogFooterButtonComponent)) {
-                    throw new TypeError('Button must be a DialogFooterButtonComponent instance');
-                }
-
-                this.append(button);
-            }
-        }
-
-        class DialogFooterButtonComponent extends StyledComponent {
-            constructor(text, onclick, styles = {}) {
-                super(document.createElement('button'), {
-                    fontSize: '14px',
-                    fontWeight: 'bold',
-                    color: DIALOG_FOOTER_BUTTON_TEXT_COLOR,
-                    background: DIALOG_FOOTER_BUTTON_COLOR,
-                    border: 'none',
-                    borderRadius: '3px',
-                    padding: '5px 10px',
-                    width: '100%',
-                    cursor: 'pointer',
-                    boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
-                    ...styles,
-                });
-
-
-                this.setText(text)
-                this.setClickListener(onclick);
-            }
-
-            setText(text) {
-                this.element.innerText = text;
-            }
-
-            setClickListener(callback) {
-                this.addEventListener('click', callback);
-            }
-        }
-
-        class ConfigComponent extends StyledComponent {
-            constructor(styles = {}) {
-                super(document.createElement('div'), {
-                    display: 'flex',
-                    gap: '5px',
-                    alignItems: 'center',
-                    textAlign: 'left',
-                    marginTop: '5px',
-                    padding: '5px',
-                    background: 'rgba(116, 35, 217, 0.1)',
-                    width: '100%',
-                    borderRadius: '15px',
-                    filter: 'drop-shadow rgba(0, 0, 0, 0.5)',
-                    ...styles
-                });
-
-                this.image = document.createElement('img');
-                this.name = document.createElement('span');
-                this.description = document.createElement('span');
-                this.mode = document.createElement('span');
-
-                this.initialize();
-            }
-
-            setImage(url) {
-                this.image.src = url;
-            }
-
-            setName(name) {
-                this.name.innerHTML = name;
-            }
-
-            setDescription(description) {
-                this.description.innerHTML = description;
-            }
-
-            setMode(mode) {
-                this.mode.innerHTML = mode;
-            }
-
-            initialize() {
-                this.setImageStyles();
-                this.setNameStyles();
-                this.setDescriptionStyles();
-                this.setModeStyles();
-                const startArea = this.createStartArea();
-                const endArea = this.createEndArea();
-                this.appendElements(startArea, endArea);
-            }
-
-            setImageStyles() {
-                this.image.style.width = '40px';
-                this.image.style.height = '40px';
-            }
-
-            setNameStyles() {
-                this.name.style.fontSize = '12px';
-                this.name.style.fontFamily = 'Verdana', 'sans-serif;';
-                this.name.style.color = '#b0a8ffff';
-                this.name.style.fontWeight = 'bold';
-            }
-
-            setDescriptionStyles() {
-                this.description.style.fontSize = '12px';
-                this.description.style.fontFamily = 'Verdana', 'sans-serif;';
-                this.description.style.color = '#b0a8ffff';
-                this.description.style.fontWeight = 'bold';
-
-            }
-
-            setModeStyles() {
-                this.mode.style.fontSize = '12px';
-                this.mode.style.fontFamily = 'Verdana', 'sans-serif;';
-                this.mode.style.color = '#b0a8ffff'
-                this.mode.style.fontWeight = 'bold';
-                this.mode.style.whiteSpace = 'nowrap';
-            }
-
-            createStartArea() {
-                const startArea = document.createElement('div');
-                startArea.style.display = 'flex';
-                startArea.style.width = '100%';
-                startArea.style.gap = '10px';
-                startArea.style.flexDirection = 'column';
-                startArea.appendChild(this.name);
-                startArea.appendChild(this.description);
-                return startArea;
-            }
-
-            createEndArea() {
-                const endArea = document.createElement('div');
-                endArea.style.display = 'flex';
-                endArea.style.flexDirection = 'column';
-                endArea.style.alignItems = 'end';
-                endArea.style.alignSelf = 'end';
-                endArea.style.width = '50%';
-                endArea.appendChild(this.mode);
-                return endArea;
-            }
-
-            appendElements(startArea, endArea) {
-                this.appendChild(this.image);
-                this.appendChild(startArea);
-                this.appendChild(endArea);
-            }
-        }
-
-        class CategoryComponent extends StyledComponent {
-            constructor(styles = {}, items = []) {
-                super(document.createElement('div'), {
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    flexDirection: 'column',
-                    textAlign: 'center',
-                    padding: '1px',
-                    width: '100%',
-                    ...styles
-                });
-
-                this.items = items;
-                this.name = document.createElement('span');
-                this.setNameStyles();
-
-                this.initialize();
-                this.setItems(items);
-            }
-
-            setNameStyles() {
-                this.name.style.width = '100%';
-                this.name.style.borderRadius = '50px';
-                this.name.style.fontSize = '16px'
-                this.name.style.fontFamily = 'Verdana';
-                this.name.style.color = '#b0a8ffff';
-                this.name.style.background = 'rgba(187, 132, 255, 0.13)';
-                this.name.style.padding = '5px';
-                this.name.style.fontWeight = 'bold';
-            }
-
-            setName(value) {
-                this.name.innerHTML = value;
-            }
-
-            setItems(items) {
-                items.forEach(item => this.append(item));
-            }
-
-            initialize() {
-                this.appendChild(this.name);
-            }
-        }
-
-        class ConfigBodyComponent extends DialogBodyComponent {
-            constructor(items) {
-                super({
-                    flexDirection: 'column',
-                    gap: '15px',
-                    maxHeight: '80vh',
-                    overflowY: 'auto'
-                });
-                items.forEach(item => this.append(item));
-            }
-        }
-
-        class LoggerItemComponent extends StyledComponent {
-            constructor(styles = {}, message) {
-                super(document.createElement('span'), {
-                    fontFamily: 'monospace',
-                    width: '100%',
-                    fontSize: '15px',
-                    color: LOGGER_TEXT_COLOR,
-                    ...styles,
-                });
-
-                this.element.innerHTML = message
-            }
-        }
-
-        class LoggerBodyComponent extends DialogBodyComponent {
-            constructor(styles = {}, items = []) {
-                super({
-                    flexDirection: 'column',
-                    maxHeight: '65vh',
-                    overflowY: 'auto',
-                    width: '100%',
-                    ...styles,
-                });
-
-                this.setItems(items);
-            }
-
-            setItems(items) {
-                this.element.innerHTML = '';
-                items.forEach(item => this.append(item));
-                this.scrollDown();
-            }
-
-            scrollDown() {
-                this.element.scrollTop = this.element.scrollHeight;
-            }
-        }
-
-        class CheckUserBodyComponent extends DialogBodyComponent {
-            constructor(data = {}) {
-                super()
-
-                const component = new StyledComponent(document.createElement('div'), {
-                    display: 'flex',
-                    flexDirection: 'column',
-                    color: '#b0a8ffff',
-                    fontFamily: 'Verdana',
-                    gap: '2px',
-                    textAlign: 'center',
-                    width: '100%',
-                });
-                component.element.innerHTML = `
-                    <span style="color: ${CHECKUSER_TEXT_COLOR}">👤Nome de usuario: ${data.username}</span>
-                    <span style="color: ${CHECKUSER_TEXT_COLOR}">📆Expira em: ${data.expiration_date}</span>
-                    <span style="color: ${CHECKUSER_TEXT_COLOR}">📆Dias restantes: ${data.expiration_days}</span>
-                    <span style="color: ${CHECKUSER_TEXT_COLOR}">🚫Conexoes: ${data.count_connections}|${data.limit_connections}</span>
-                `
-
-                this.append(component)
-            }
-        }
-
-        class VpnStateComponent extends StyledComponent {
-            constructor(style = {}) {
-                super(document.createElement('span'), {
-                    fontSize: '1.5tem',
-                    fontFamily: 'Verdana',
-                    fontWeight: 'bold',
-                    color: VPN_STATE_TEXT_COLOR,
-                    marginTop: '2rem',
-                    ...style,
-                })
-
-                this.setState('DISCONNECTED')
-            }
-
-            setState(state) {
-                this.element.innerHTML = state
-            }
-        }
-
-        class LocalIPComponent extends StyledComponent {
-            constructor(styles = {}) {
-                super(document.createElement('span'), {
-                    position: 'absolute',
-                    fontSize: '1rem',
-                    fontFamily: 'Verdana',
-                    color: TEXT_COLOR,
-                    top: `${totalTopValue}px`,
-                    left: '10px',
-                    display: 'flex',                  // Adicionando display: flex para ativar o flexbox
-                    justifyContent: 'center',         // Centralizar horizontalmente
-                    alignItems: 'center',             // Centralizar verticalmente
-                    ...styles,
-                });
-
-                this.setIP(window?.DtGetLocalIP?.execute() ?? '127.0.0.1');
-                setInterval(() => {
-                    this.setIP(window?.DtGetLocalIP?.execute() ?? '127.0.0.1');
-                }, 1000);
-            }
-
-            setIP(ip) {
-                this.element.innerHTML = `IP Local: ${ip}`;
-            }
-        }
-
-        const statusBarHeight = window?.DtGetStatusBarHeight?.execute();
-        const extraPixels = 3; // Number of extra pixels you want to add
-        const defaultHeight = 60; // Default height if statusBarHeight is undefined
-
-        const totalTopValue = (statusBarHeight !== undefined ? statusBarHeight : defaultHeight) + extraPixels;
-
-        class NetworkStatsComponent extends StyledComponent {
-            constructor(styles = {}) {
-                super(document.createElement('div'), {
-                    display: 'flex',
-                    position: 'absolute',
-                    gap: '100px',
-                    borderRadius: '10px',
-                    padding: '0',
-                    border: 'none',
-                    color: TEXT_COLOR,
-                    bottom: "40%",
-                    left: '50%',
-                    transform: 'translateX(-50%)',
-                    cursor: 'pointer',
-                    ...styles,
-                });
-
-                this.meterDownContainer = this.createMeterContainer();
-                this.meterDownText = this.createMeterText();
-                this.arrowDownShortIcon = new ArrowDownShortIconComponent();
-                this.meterDownContainer.append(this.meterDownText);
-                this.meterDownContainer.append(this.arrowDownShortIcon);
-
-                this.meterUpContainer = this.createMeterContainer();
-                this.meterUpText = this.createMeterText();
-                this.arrowUpShortIcon = new ArrowUpShortIconComponent();
-                this.meterUpContainer.append(this.arrowUpShortIcon);
-                this.meterUpContainer.append(this.meterUpText);
-
-                this.append(this.meterDownContainer);
-                this.append(this.meterUpContainer);
-
-                this.getNetworkDownloadFn = () => window?.DtGetNetworkDownloadBytes?.execute() ?? 0;
-                this.getNetworkUploadFn = () => window?.DtGetNetworkUploadBytes?.execute() ?? 0;
-
-                this.currentNetworkDownload = parseFloat(localStorage.getItem('networkDownload') ?? this.getNetworkDownloadFn());
-                this.currentNetworkUpload = parseFloat(localStorage.getItem('networkUpload') ?? this.getNetworkUploadFn());
-
-                localStorage.setItem('networkDownload', this.currentNetworkDownload);
-                localStorage.setItem('networkUpload', this.currentNetworkUpload);
-
-                this.showMeter();
-                setInterval(() => this.showMeter(), 1000);
-            }
-
-            createMeterContainer() {
-                return new StyledComponent(document.createElement('div'), {
-                    display: 'flex',
-                    alignItems: 'center',
-                });
-            }
-
-            createMeterText() {
-                return new StyledComponent(document.createElement('span'), {
-                    fontSize: '1.1rem',
-                    marginLeft: '-5px',
-                    fontFamily: 'Helvetica',
-                    fontWeight: 'bold',
-                    whiteSpace: 'nowrap',
-                    color: '',
-                });
-            }
-
-            formatBytes(bytes) {
-                const sizes = ['B', 'KB', 'MB', 'GB', 'TB'];
-                if (bytes === 0) return '0 B';
-                const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
-                return (bytes / Math.pow(1024, i)).toPrecision(3) + ' ' + sizes[i];
-            }
-
-            showMeter() {
-                const newNetworkDownload = this.getNetworkDownloadFn();
-                const newNetworkUpload = this.getNetworkUploadFn();
-
-                if (!isNaN(newNetworkDownload) && !isNaN(newNetworkUpload)) {
-                    this.meterDownText.element.innerHTML = this.formatBytes(newNetworkDownload - this.currentNetworkDownload);
-                    this.meterUpText.element.innerHTML = this.formatBytes(newNetworkUpload - this.currentNetworkUpload);
-                }
-            }
-
-        }
-
-        class PingComponent extends StyledComponent {
-            constructor(styles = {}) {
-                super(document.createElement('span'), {
-                    position: 'absolute',
-                    fontSize: '1rem',
-                    fontFamily: 'Helvetica',
-                    fontWeight: 'bold',
-                    whiteSpace: 'nowrap',
-                    top: `${totalTopValue}px`,
-                    right: '10px',
-
-                    ...styles,
-                });
-
-
-                this.startPing();
-            }
-
-            async startPing() {
-                this.setPing(await this.ping());
-                setInterval(async () => this.setPing(await this.ping()), 1000);
-            }
-
-            setPing(ping) {
-                this.element.textContent = `PING: ${ping}ms`;
-
-                const pingValue = parseInt(ping, 10);
-                const color = this.getColorFromPing(pingValue);
-
-                this.setStyles({ color });
-            }
-
-            getColorFromPing(ping) {
-                const pingValue = parseInt(ping, 10);
-                const color = pingValue >= 0 && pingValue <= 50 ? '#00ff00' :
-                    pingValue > 50 && pingValue <= 100 ? '#ffff00' :
-                        '#ff0000';
-                return color;
-            }
-
-            async ping() {
-                const startTime = new Date().getTime();
-                const url = `https://raw.githubusercontent.com/TelksBr/SSH-T-PROJECT-VPN/main/IC/baixados.png?${startTime}`
-
-                try {
-                    const data = await fetch(url)
-                    return new Date().getTime() - startTime;
-                } catch (err) {
-                    console.log(err);
-                    return -1;
-                }
-            }
-        }
-
-        class IframeBodyComponent extends DialogBodyComponent {
-            constructor(styles = {}, url = null) {
-                super({
-                    height: '600px',
-                    ...styles
-                })
-
-                this.iframeElement = new StyledComponent(document.createElement('iframe'), {
-                    width: '100%',
-                    border: 'none',
-                    borderRadius: '5px'
-                })
-
-                this.setUrl(url)
-                this.append(this.iframeElement)
-            }
-
-            setUrl(url) {
-                this.iframeElement.element.src = url
-            }
-        }
-
-        class IframeServerBodyComponent extends DialogBodyComponent {
-            constructor(styles = {}, url = null) {
-                super({
-                    height: '700px',
-                    ...styles
-                })
-
-                this.iframeElement = new StyledComponent(document.createElement('iframe'), {
-                    width: '100%',
-                    border: 'none',
-                    borderRadius: '5px',
-                    background: ''
-                })
-
-                this.setUrl(url)
-                this.append(this.iframeElement)
-            }
-
-            setUrl(url) {
-                this.iframeElement.element.src = url
-            }
-        }
-
-        class CleanAppMessageBodyComponent extends DialogBodyComponent {
-            constructor(styles = {}, url = null) {
-                super({
-                    height: 'auto',
-                    ...styles
-                })
-
-                this.spanComponent = new StyledComponent(document.createElement('span'), {
-                    fontSize: '16px',
-                    fontFamily: 'Helvetica',
-                    fontWeight: 'bold',
-                    color: TEXT_COLOR,
-                })
-
-                this.spanComponent.element.innerHTML = 'Você gostaria de limpar os dados do aplicativo? Por favor, esteja ciente de que essa ação resultará na remoção permanente de todas as informações armazenadas. Você tem certeza de que deseja prosseguir com essa operação?'
-
-                this.append(this.spanComponent)
-            }
-        }
-
-
-        class StyledButtonComponent extends StyledComponent {
-            constructor(text, styles = {}) {
-                super(document.createElement('button'), {
-                    width: '100%',
-                    borderRadius: '5px',
-                    padding: '10px',
-                    border: 'none',
-                    color: TEXT_COLOR,
-                    background: BUTTON_BACKGROUND_COLOR,
-                    boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
-                    cursor: 'pointer',
-                    filter: 'drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5))',
-                    ...styles
-                });
-
-                this.textComponent = new StyledComponent(document.createElement('span'), {
-                    fontSize: '16px',
-                    fontWeight: 'bold',
-                });
-
-                this.textComponent.element.innerHTML = text;
-                this.appendChild(this.textComponent);
-            }
-        }
-
-        class ButtonDonateComponent extends StyledButtonComponent {
-            constructor(styles = {}) {
-                super('COMPRAR', styles);
-                this.addEventListener('click', () => window?.DtStartWebViewActivity?.execute(PREMIUM_URL))
-            }
-        }
-
-        class ButtonApnSettingsComponent extends StyledButtonComponent {
-            constructor(styles = {}) {
-                super('APN', styles);
-
-                this.addEventListener('click', () => window?.DtStartApnActivity?.execute())
-            }
-        }
-
-        class ButtonTermsComponent extends StyledButtonComponent {
-            constructor(styles = {}) {
-                super('TERMOS', styles);
-
-                this.addEventListener('click', () => {
-                    window?.DtStartWebViewActivity?.execute(TERMS_URL)
-                })
-            }
-        }
-
-        class ButtonServersComponent extends StyledButtonComponent {
-            constructor(styles = {}) {
-                super('SERVIDORES', styles);
-
-                this.addEventListener('click', () => {
-                    window?.DtStartWebViewActivity?.execute(SERVER_URL)
-                })
-            }
-        }
-
-        class ButtonTutoriasComponent extends StyledButtonComponent {
-            constructor(styles = {}) {
-                super('TUTORIAIS', styles);
-
-                this.addEventListener('click', () => {
-                    window?.DtStartWebViewActivity?.execute(TUTO_URL)
-                })
-            }
-        }
-
-        class IframeServersButtonComponent extends StyledButtonComponent {
-            constructor(styles = {}) {
-                super('SERVIDORES', styles);
-
-                this.addEventListener('click', () => {
-                    const dialog = new DialogComponent();
-                    const content = new DialogContentComponent();
-                    const header = new DialogHeaderComponent();
-                    header.setTitleText('SSHT SERVERS:');
-                    header.setCloseButtonClickListener(() => dialog.close());
-
-                    const body = new IframeServerBodyComponent({}, SERVER_URL);
-                    content.setHeader(header);
-                    content.setBody(body);
-                    dialog.setOnCloseEvent(() => body.setUrl(''));
-                    dialog.setContent(content);
-                    dialog.show();
-                });
-            }
-        }
-
-
-        class ButtonHostPotComponent extends StyledButtonComponent {
-            constructor(styles = {}) {
-                super('HOTSPOT', styles);
-
-                // Flag para controlar o estado do hotspot
-                this.hotSpotRunning = false;
-
-                this.addEventListener('click', () => {
-                    // Função para iniciar o hotspot
-                    const startHotSpot = () => {
-                        DtStartHotSpotService.execute();
-                        this.textContent = 'HOTSPOT';
-                        this.hotSpotRunning = true;
-                    };
-
-                    // Função para parar o hotspot
-                    const stopHotSpot = () => {
-                        DtStopHotSpotService.execute();
-                        this.textContent = 'HOTSPOT';
-                        this.hotSpotRunning = false;
-                    };
-
-                    // Função para alternar o estado do hotspot
-                    const toggleHotSpot = () => {
-                        this.hotSpotRunning ? stopHotSpot() : startHotSpot();
-                    };
-
-                    // Chama a função para alternar o estado do hotspot
-                    toggleHotSpot();
-                });
-            }
-        }
-
-
-        const rootComponent = new AppComponent(document.querySelector('#root'), { background: teste });
-        rootComponent.append(new LocalIPComponent());
-        // rootComponent.append(new PingComponent());
-        rootComponent.append(new NetworkStatsComponent());
-
-
-        const cardComponent = new CardComponent({
-            position: 'absolute',
-            bottom: '45%',
-            background: 'transparent',
-            boxShadow: 'none',
-            filter: 'drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5))',
-        })
-
-        const configInputGroup = new InputGroupComponent({ cursor: 'pointer', background: INPUT_COLOR });
-        configInputGroup.addEventListener('click', () => {
-            const mock = '[{"sorter":6,"color":"#6D08041C","name":"CONFIG","id":1393,"items":[{"mode":"V2RAY - VLESS","sorter":4,"tlsVersion":"TLSv1.2","name":"CONFIG 01","icon":"https://cdn-icons-png.flaticon.com/512/8187/8187143.png","id":11803,"status":"ACTIVE"},{"mode":"SSH_DIRECT","sorter":2,"tlsVersion":"TLSv1.2","name":"CONFIG 02","icon":"https://cdn-icons-png.flaticon.com/512/8187/8187143.png","id":28627,"status":"ACTIVE"},{"mode":"OVPN_PROXY","sorter":23,"tlsVersion":"TLSv1.2","name":"CONFIG 03","icon":"https://cdn-icons-png.flaticon.com/512/8187/8187143.png","id":30001,"status":"ACTIVE"}]},{"sorter":2,"color":"#6D08041C","name":"CONFIG 2","id":1846,"items":[{"mode":"SSH_PROXY","sorter":1,"tlsVersion":"TLSv1.2","name":"CONFIG 01","icon":"https://cdn-icons-png.flaticon.com/512/8187/8187143.png","id":26295,"status":"ACTIVE"}]},{"sorter":4,"color":"#80000000","name":"CONFIG 3","id":3310,"items":[{"mode":"SSH_PROXY","sorter":1,"tlsVersion":"TLSv1.2","name":"CONFIG. TEST","icon":"https://cdn-icons-png.flaticon.com/512/8187/8187143.png","id":29997,"status":"ACTIVE"},{"mode":"OVPN_PROXY","sorter":1,"tlsVersion":"TLSv1.2","name":"CONFIG. TEST 2","icon":"https://cdn-icons-png.flaticon.com/512/8187/8187143.png","id":29998,"status":"ACTIVE"}]}]'
-            const items = JSON.parse(window?.DtGetConfigs?.execute() || mock)
-            items.sort((a, b) => a.sorter - b.sorter)
-            items.forEach(item => item.items.sort((a, b) => a.sorter - b.sorter))
-
-            const dialogComponent = new DialogComponent()
-            const dialogContentComponent = new DialogContentComponent()
-
-            const dialogHeaderComponent = new DialogHeaderComponent()
-            dialogHeaderComponent.setTitleText('CONFIGURAÇÕES')
-            dialogHeaderComponent.setCloseButtonClickListener(() => dialogComponent.close())
-
-            const configBodyComponent = new ConfigBodyComponent(items.map(item => {
-                const category = new CategoryComponent()
-                category.setName(item.name)
-                category.setItems(item.items.map(item => {
-                    const config = new ConfigComponent()
-                    config.setName(item.name)
-                    config.setDescription(item.description ?? '')
-                    config.setMode(item.mode)
-                    config.setImage(item.icon)
-                    config.addEventListener('click', () => {
-                        window?.DtSetConfig?.execute(item.id)
-                        dialogComponent.close()
-                    })
-                    return config
-                }))
-                return category
-            }))
-
-            dialogContentComponent.setHeader(dialogHeaderComponent)
-            dialogContentComponent.setBody(configBodyComponent)
-            dialogComponent.setContent(dialogContentComponent)
-            dialogComponent.show()
-        })
-        cardComponent.append(configInputGroup)
-
-        const arrowDownIconComponent = new ArrowDownIconComponent()
-        const networkIconComponent = new NetworkIconComponent()
-        const configInput = new InputText({ cursor: 'pointer' })
-        configInput.setEnabled(false)
-        configInput.setPlaceholder('SELECIONE UMA CONFIG.')
-        configInput.setValue(JSON.parse(window?.DtGetDefaultConfig?.execute() ?? '{}').name ?? '')
-        configInputGroup.append(networkIconComponent, configInput, arrowDownIconComponent)
-
-        const userPassContainer = new StyledComponent(document.createElement('div'), {
-            width: '100%',
-            display: 'flex',
-            gap: '5px',
-        })
-        cardComponent.append(userPassContainer)
-
-        const usernameGroupComponent = new InputGroupComponent({ background: INPUT_COLOR });
-        const personIconComponent = new PersonIconComponent()
-        const usernameInput = new InputText()
-        usernameInput.setPlaceholder('Nome de usuario')
-        usernameInput.setValue(window?.DtUsername?.get() ?? '')
-        usernameInput.setOnInputListener(() => { window?.DtUsername?.set(usernameInput.value) })
-        usernameGroupComponent.append(personIconComponent, usernameInput)
-        userPassContainer.append(usernameGroupComponent)
-
-        const passwordGroupComponent = new InputGroupComponent({ background: INPUT_COLOR });
-        const lockIconComponent = new LockIconComponent()
-        const passwordInput = new InputPassword()
-        const eyeIconComponent = new EyeIconComponent()
-        eyeIconComponent.addEventListener('click', () => { passwordInput.setShowing(!passwordInput.isShowing) })
-        passwordInput.setPlaceholder('Senha')
-        passwordInput.setValue(window?.DtPassword?.get() ?? '')
-        passwordInput.setOnInputListener(() => { window?.DtPassword?.set(passwordInput.value) })
-        passwordGroupComponent.append(lockIconComponent, passwordInput, eyeIconComponent)
-        userPassContainer.append(passwordGroupComponent)
-
-        const v2rayUuidGroupComponent = new InputGroupComponent({ background: INPUT_COLOR });
-        const v2rayLockIconComponent = new LockIconComponent();
-        const v2rayUuidInput = new InputPassword()
-        v2rayUuidInput.setPlaceholder('V2Ray UUID')
-        v2rayUuidInput.setValue(window?.DtUuid?.get() ?? '')
-        v2rayUuidInput.setOnInputListener(() => { window?.DtUuid?.set(v2rayUuidInput.value) })
-        v2rayUuidGroupComponent.append(v2rayLockIconComponent, v2rayUuidInput)
-        cardComponent.append(v2rayUuidGroupComponent)
-
-        const buttonAndStateContainer = new StyledComponent(document.createElement('div'), {
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            position: 'absolute',
-            top: '10%',
-        })
-
-        const startOrStopButtonComponent = new PowerIconComponent()
-        startOrStopButtonComponent.addEventListener('click', () => {
-            if (DtGetVpnState.execute() != 'DISCONNECTED') {
-                DtExecuteVpnStop.execute()
-            } else {
-                DtExecuteVpnStart.execute()
-            }
-        })
-        buttonAndStateContainer.append(startOrStopButtonComponent)
-
-        const vpnStateComponent = new VpnStateComponent()
-        buttonAndStateContainer.append(vpnStateComponent)
-
-        const cardToolsComponent = new CardComponent({
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            position: 'absolute',
-            bottom: '5%',
-            background: 'transparent',
-            boxShadow: 'none',
-        })
-
-        const calanderIconComponent = new CalanderIconComponent()
-        calanderIconComponent.addEventListener('click', () => window?.DtStartCheckUser?.execute())
-        cardToolsComponent.append(calanderIconComponent)
-
-        const dialogComponent = new DialogComponent()
-        const dialogContentComponent = new DialogContentComponent()
-        const dialogHeaderComponent = new DialogHeaderComponent()
-        const dialogFooterComponent = new DialogFooterComponent()
-        const loggerBodyComponent = new LoggerBodyComponent({})
-
-        dialogHeaderComponent.setTitleText('REGISTRO')
-        dialogHeaderComponent.setCloseButtonClickListener(() => dialogComponent.close())
-
-        dialogFooterComponent.addButton(new DialogFooterButtonComponent(
-            'LIMPAR',
-            () => window?.DtClearLogs?.execute()
-        ))
-        dialogFooterComponent.addButton(new DialogFooterButtonComponent(
-            'FECHAR',
-            () => dialogComponent.close()
-        ))
-
-        dialogContentComponent.setHeader(dialogHeaderComponent)
-        dialogContentComponent.setBody(loggerBodyComponent)
-        dialogContentComponent.setFooter(dialogFooterComponent)
-
-        dialogComponent.setContent(dialogContentComponent)
-
-        const loggerIconComponent = new LoggerIconComponent()
-        loggerIconComponent.addEventListener('click', () => dialogComponent.show())
-        cardToolsComponent.append(loggerIconComponent)
-
-        const arrowRepeatIconComponent = new ArrowRepeatIconComponent()
-        arrowRepeatIconComponent.addEventListener('click', () => window?.DtStartAppUpdate?.execute());
-        cardToolsComponent.append(arrowRepeatIconComponent)
-
-        const batteryIconComponent = new BatteryIconComponent()
-        batteryIconComponent.addEventListener('click', () => window?.DtIgnoreBatteryOptimizations?.execute());
-        cardToolsComponent.append(batteryIconComponent)
-
-        const speedMeterComponent = new SpeedMeterIconComponent()
-        speedMeterComponent.addEventListener('click', () => {
-            window?.DtStartWebViewActivity?.execute(SPEEDTEST_URL)
-        })
-        cardToolsComponent.append(speedMeterComponent)
-
-        const trashIconComponent = new TrashIconComponent()
-        trashIconComponent.addEventListener('click', () => {
-            const dialog = new DialogComponent()
-            const content = new DialogContentComponent()
-            const header = new DialogHeaderComponent()
-            const footer = new DialogFooterComponent()
-            footer.addButton(new DialogFooterButtonComponent('NÃO', () => dialog.close()))
-            footer.addButton(new DialogFooterButtonComponent('SIM', () => window?.DtCleanApp?.execute()))
-
-            header.setTitleText('LIMPAR DADOS')
-            header.setCloseButtonClickListener(() => dialog.close())
-
-            content.setHeader(header)
-            content.setBody(new CleanAppMessageBodyComponent())
-            content.setFooter(footer)
-
-            dialog.setContent(content)
-            dialog.show()
-        })
-        cardToolsComponent.append(trashIconComponent)
-
-        const buttonsCard = new CardComponent({
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            position: 'absolute',
-            bottom: '13%',
-            background: 'transparent',
-            boxShadow: 'none',
-        })
-
-        const buttonHostPotCard = new CardComponent({
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            position: 'absolute',
-            bottom: '25%',
-            background: 'transparent',
-            boxShadow: 'none',
-        })
-
-        const buttonServerCard = new CardComponent({
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            position: 'absolute',
-            bottom: '20%',
-            background: 'transparent',
-            boxShadow: 'none',
-        })
-
-
-        buttonsCard.append(new ButtonDonateComponent())
-        buttonsCard.append(new ButtonApnSettingsComponent())
-        buttonsCard.append(new ButtonTermsComponent())
-        buttonHostPotCard.append(new ButtonHostPotComponent({
-            color: '#b0a8ffff'
-        }));
-        buttonServerCard.append(new ButtonServersComponent())
-        buttonServerCard.append(new ButtonTutoriasComponent())
-
-        rootComponent.append(buttonAndStateContainer)
-        rootComponent.append(cardComponent)
-        rootComponent.append(cardToolsComponent)
-        rootComponent.append(buttonsCard)
-        rootComponent.append(buttonHostPotCard)
-        rootComponent.append(buttonServerCard)
-
-
-        const dtCheckUserModelListener = model => {
-            const data = JSON.parse(model ?? `{"username": "test"}`)
-            const dialogComponent = new DialogComponent()
-            const dialogContentComponent = new DialogContentComponent()
-
-            const dialogHeaderComponent = new DialogHeaderComponent()
-            dialogHeaderComponent.setTitleText(`📆 Olá, ${data.username}`)
-
-            dialogHeaderComponent.setCloseButtonClickListener(() => dialogComponent.close())
-            dialogContentComponent.setHeader(dialogHeaderComponent)
-
-            dialogContentComponent.setBody(new CheckUserBodyComponent(data))
-            dialogComponent.setContent(dialogContentComponent)
-            dialogComponent.show()
-        }
-
-        const dtConfigClickListener = () => {
-            const data = JSON.parse(window?.DtGetDefaultConfig?.execute() ?? '{"auth":{"password": ""}, "mode": "v2ra"}')
-            configInput.setValue(data.name ?? '')
-
-            const isV2ray = data?.mode?.toLowerCase()?.startsWith('v2ray');
-
-            usernameGroupComponent.setStyles({
-                display: isV2ray || data?.auth?.username ? 'none' : 'flex',
+
+    section.home span#version {
+      background: #881f9a67;
+      font-size: 14px;
+      position: absolute;
+      bottom: 3%;
+      left: 3%;
+      color: #ffffff;
+    }
+
+    section.container-carrier-selector-button {
+      width: 100%;
+      height: 10%;
+      max-height: 60px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      margin: 10% 0 0 0;
+    }
+
+    section.container-carrier-selector-button button {
+      width: 90%;
+      height: 70%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      position: relative;
+      border: 0px;
+      border-radius: 6px;
+      background: radial-gradient(circle, #0bb1d3, #9f2fff 85%);
+      background-size: 300%;
+      animation: 15s infinite ButtonStartVpnAnimation;
+    }
+
+    section.container-carrier-selector-button button svg {
+      color: #ffffff;
+    }
+
+    section.container-carrier-selector-button button span {
+      color: #ffffff;
+      font-size: 14px;
+    }
+
+    section.container-button-start-stop-vpn {
+      width: 100%;
+      height: auto;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      margin: 20% 0 0 0;
+    }
+
+    section.container-button-start-stop-vpn button {
+      width: 135px;
+      height: 135px;
+      margin-top: -80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      position: relative;
+
+      border: 0;
+      border-radius: 50%;
+
+      background: linear-gradient(to top left, #05596a, #4d0a87 85%);
+    }
+
+    section.container-button-start-stop-vpn button svg {
+      width: 50%;
+      height: 50%;
+
+      color: #ffffff;
+    }
+
+    section.container-button-start-stop-vpn button::before,
+    section.container-button-start-stop-vpn button::after {
+      width: calc(100% + 10px);
+      height: calc(100% + 10px);
+
+      content: "";
+
+      position: absolute;
+      z-index: -1;
+
+      border-radius: 50%;
+
+      background: var(--default-background-color);
+      background-size: 300%;
+
+      animation: 8s infinite ButtonStartVpnAnimation;
+    }
+
+    section.container-button-start-stop-vpn button::after {
+      filter: blur(30px);
+    }
+
+    section.renew-alert {
+      width: 100%;
+      height: auto;
+
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      margin: auto 0 auto 0;
+    }
+
+    section.renew-alert.active {
+      display: flex;
+    }
+
+    section.renew-alert button {
+      padding: 2.5% 10%;
+
+      border: 0;
+      border-radius: 60px;
+
+      background: radial-gradient(circle, #0bb1d3, #9f2fff 85%);
+      background-size: 300%;
+
+      animation: 8s infinite ButtonStartVpnAnimation;
+    }
+
+    section.renew-alert button span {
+      color: #ffffff;
+    }
+
+    section.profile,
+    section.carrier-list,
+    section.container-tools,
+    section.container-logs,
+    section.container-error {
+      width: 100%;
+      min-width: 100%;
+      height: 100%;
+
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      padding: var(--space-status-bar) 0 0 0;
+
+      opacity: 0;
+
+      transform: translateX(100%);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    section.carrier-list {
+      height: 97%;
+    }
+
+    section.container-tools {
+      gap: 1px;
+    }
+
+    section.loading,
+    section.checkuser,
+    section.clean-data-app,
+    section.hotspot-container,
+    section.terms-container {
+      width: 100%;
+      min-width: 100%;
+      height: 100%;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 999999999;
+
+      padding-top: 15%;
+
+      background: rgba(0, 0, 0, 0.3);
+
+      opacity: 0;
+      transform: scale(0);
+      transform-origin: center;
+
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    section.hotspot-container {
+      padding-top: 0;
+    }
+
+    section.loading.active,
+    section.checkuser.active,
+    section.clean-data-app.active,
+    section.hotspot-container.active,
+    section.terms-container.active {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    section.loading section,
+    section.checkuser section,
+    section.clean-data-app section,
+    section.hotspot-container section,
+    section.terms-container section {
+      width: 80%;
+      height: auto;
+      min-height: 50%;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      border-radius: 10px;
+
+      background: #200d45;
+
+      overflow: hidden;
+    }
+
+    section.loading section header,
+    section.checkuser section header,
+    section.clean-data-app section header,
+    section.hotspot-container section header,
+    section.terms-container section header {
+      width: 100%;
+      height: auto;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      position: relative;
+
+      padding: 4% 2% 4% 2%;
+
+      border-bottom: 2px solid #03142d;
+    }
+
+    section.loading section header h1,
+    section.checkuser section header h1,
+    section.clean-data-app section header h1,
+    section.hotspot-container section header h1,
+    section.terms-container section header h1 {
+      margin-left: auto;
+
+      color: #ffffff;
+      font-size: 0.8rem;
+    }
+
+    @media (max-width: 280px) {
+      section.clean-data-app section header h1 {
+        font-size: 0.7rem;
+      }
+    }
+
+    section.loading section header svg,
+    section.checkuser section header svg,
+    section.clean-data-app section header svg,
+    section.hotspot-container section header svg,
+    section.terms-container section header svg {
+      margin-left: auto;
+
+      color: #ffffff;
+    }
+
+    section.terms-container section p {
+      width: 95%;
+      height: auto;
+      max-height: 350px;
+
+      padding: 5% 0;
+
+      color: #ffffff;
+      text-align: center;
+
+      overflow: auto;
+    }
+
+    section.loading section div.loading {
+      width: 150px;
+      height: 150px;
+
+      margin-top: auto;
+      margin-bottom: auto;
+
+      border-top: 4px solid #ffffff;
+      border-right: 4px solid #ffffff;
+      border-bottom: 4px solid #ffffff;
+      border-left: 4px solid transparent;
+      border-radius: 50%;
+
+      background-color: transparent;
+
+      animation: spin 1s linear infinite;
+    }
+
+    section.checkuser section section {
+      width: 100%;
+      height: auto;
+      min-height: 100%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      margin: auto 0 auto 0;
+      padding: 3% 0;
+
+      border-radius: 0;
+    }
+
+    section.checkuser section section div:first-child {
+      margin: 0;
+    }
+
+    section.checkuser section section div {
+      width: 90%;
+      height: auto;
+
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      margin: 5% 0 0 0;
+      padding: 3% 3%;
+
+      border-radius: 10px;
+
+      background: radial-gradient(circle, #0bb1d3, #9f2fff 85%);
+      background-size: 300%;
+
+      animation: 8s infinite ButtonStartVpnAnimation;
+    }
+
+    section.checkuser section section div svg,
+    section.checkuser section section div span {
+      color: #ffffff;
+    }
+
+    section.checkuser section section div span {
+      font-size: 0.8rem;
+    }
+
+    section.clean-data-app section section,
+    section.hotspot-container section section {
+      width: 100%;
+      height: auto;
+      min-height: 100%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      margin: auto 0 auto 0;
+      padding: 8% 0;
+
+      border-radius: 0;
+    }
+
+    section.clean-data-app section section svg,
+    section.hotspot-container section section svg {
+      width: 30%;
+      height: auto;
+
+      color: #ffff00;
+      font-size: 8rem;
+    }
+
+    section.hotspot-container section section svg {
+      width: 20%;
+      height: auto;
+
+      color: #ffffff;
+    }
+
+    section.clean-data-app section section h1,
+    section.hotspot-container section section h1 {
+      color: #ffffff;
+      font-size: 1rem;
+    }
+
+    section.clean-data-app section section p,
+    section.hotspot-container section section p {
+      margin: 5% 0 8% 0;
+      padding: 0 3%;
+
+      color: #ffffff;
+      text-align: center;
+      font-family: Arial, sans-serif;
+    }
+
+    section.hotspot-container section section p {
+      width: 100%;
+      height: 10%;
+      max-height: 300px;
+
+      overflow: auto;
+    }
+
+    section.clean-data-app section section button,
+    section.hotspot-container section section button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 4% 10%;
+
+      border: 0;
+      border-radius: 60px;
+
+      background: radial-gradient(circle, #0bb1d3, #9f2fff 85%);
+      background-size: 300%;
+
+      animation: 8s infinite ButtonStartVpnAnimation;
+    }
+
+    section.clean-data-app section section button span,
+    section.hotspot-container section section button span {
+      color: #ffffff;
+    }
+
+    section.profile header,
+    section.carrier-list header,
+    section.container-tools header,
+    section.container-logs header,
+    section.container-error header {
+      width: 100%;
+      height: 10%;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      position: relative;
+
+      padding: 0 20px 0 20px;
+
+      background: #200d45;
+    }
+
+    section.profile header::before,
+    section.profile header::after,
+    section.carrier-list header::before,
+    section.carrier-list header::after,
+    section.container-tools header::before,
+    section.container-tools header::after,
+    section.container-logs header::before,
+    section.container-logs header::after,
+    section.container-error header::before,
+    section.container-error header::after {
+      width: calc(100% + 2px);
+      height: calc(100% + 2px);
+
+      content: "";
+
+      position: absolute;
+      z-index: -1;
+
+      background: linear-gradient(135deg,
+          #9f2fff,
+          #0bb1d3,
+          #7f47cb,
+          #00ffff,
+          #7a2cec,
+          #4adfdf,
+          #76fcfc,
+          #7f47cb,
+          #9f2fff,
+          #0bb1d3,
+          #7f47cb,
+          #00ffff,
+          #7a2cec,
+          #4adfdf);
+      background-size: 300%;
+
+      animation: 15s infinite ButtonStartVpnAnimation;
+    }
+
+    section.profile header::after,
+    section.carrier-list header::after,
+    section.container-tools header::after,
+    section.container-logs header::after,
+    section.container-error header::after {
+      filter: blur(5px);
+    }
+
+    section.profile header svg,
+    section.carrier-list header svg,
+    section.container-tools header svg,
+    section.container-logs header svg,
+    section.container-error header svg {
+      width: 20px;
+      height: 20px;
+
+      margin: 0 auto 0 0;
+
+      fill: url(#grad);
+    }
+
+    section.profile header h1,
+    section.carrier-list header h1,
+    section.container-tools header h1,
+    section.container-logs header h1,
+    section.container-error header h1 {
+      margin: 0 auto 0 0;
+
+      color: #ffffff;
+      font-size: 0.9rem;
+    }
+
+    section.profile form {
+      width: 100%;
+      height: auto;
+
+      padding: 0px 10px;
+
+      display: flex;
+      flex-direction: column;
+    }
+
+    section.profile form fieldset {
+      width: 100%;
+      height: auto;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      position: relative;
+
+      margin: 0% 0px;
+      padding: 5px 10px;
+
+      border: 0px solid #00ff00;
+      border-radius: 5px;
+
+      background: #200d45;
+    }
+
+    section.profile form fieldset::before,
+    section.profile form fieldset::after {
+      width: calc(100% + 2px);
+      height: calc(100% + 17px);
+
+      content: "";
+
+      position: absolute;
+      top: -16px;
+      right: 0;
+      bottom: 0;
+      left: -1px;
+      z-index: -1;
+
+      border-radius: 5px;
+
+      background: radial-gradient(circle,
+          #9f2fff,
+          #0bb1d3,
+          #7f47cb,
+          #00ffff,
+          #7a2cec,
+          #4adfdf,
+          #76fcfc,
+          #7f47cb,
+          #9f2fff,
+          #0bb1d3,
+          #7f47cb,
+          #00ffff,
+          #7a2cec,
+          #4adfdf);
+      background-size: 300%;
+
+      animation: 20s infinite ButtonStartVpnAnimation;
+    }
+
+    section.profile form fieldset::after {
+      filter: blur(3px);
+    }
+
+    section.profile form fieldset legend {
+      padding: 0px 7px 0px 5px;
+      background: #200d45;
+    }
+
+    section.profile form fieldset legend svg {
+      width: auto;
+      height: 1.563rem;
+
+      fill: url(#grad);
+    }
+
+    section.profile form fieldset p {
+      color: #ffffff;
+      font-size: 0.9rem;
+      font-style: italic;
+    }
+
+    section.profile form fieldset:nth-child(2) {
+      margin-top: 5%;
+
+      padding: 0px 10px 20px 10px;
+    }
+
+    section.profile form fieldset:nth-child(2)::after,
+    section.profile form fieldset:nth-child(2)::before {
+      height: calc(100% + 15px);
+      top: -14px;
+    }
+
+    section.profile form fieldset:nth-child(2) legend {
+      color: #ffffff;
+    }
+
+    section.profile form fieldset:nth-child(2) label {
+      margin-right: auto;
+      color: #ffffff;
+    }
+
+    section.profile form fieldset:nth-child(2) label.hidden {
+      display: none;
+    }
+
+    section.profile form fieldset:nth-child(2) div {
+      width: 100%;
+      height: 40px;
+
+      display: flex;
+      align-items: center;
+
+      margin: 0 0 0 auto;
+
+      border: 1px solid #ffffff;
+      border-radius: 5px;
+
+      overflow: hidden;
+    }
+
+    section.profile form fieldset:nth-child(2) div.hidden {
+      display: none;
+    }
+
+    section.profile form fieldset:nth-child(2) div svg {
+      width: 15%;
+      max-width: 40px;
+      height: 100%;
+      max-height: 40px;
+
+      padding: 3%;
+
+      color: #ffffff;
+    }
+
+    section.profile form fieldset:nth-child(2) div svg.hidden {
+      display: none;
+    }
+
+    section.profile form fieldset:nth-child(2) div input {
+      width: 100%;
+      height: 100%;
+
+      padding: 0px 5px;
+
+      border: 0px;
+      border-left: 1px solid #ffffff;
+      outline: none;
+
+      color: #ffffff;
+
+      background: transparent;
+    }
+
+    section.profile form fieldset:nth-child(2) label[for="passworddiv"] {
+      margin-top: 4%;
+    }
+
+    section.profile form fieldset:nth-child(2) label[for="uuiddiv"] {
+      margin-top: 4%;
+    }
+
+    section.profile form fieldset:nth-child(2) button {
+      width: 80%;
+      min-width: 200px;
+      height: 20%;
+      min-height: 30px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+
+      margin: 6% auto 0px auto;
+
+      border: 0px;
+      border-radius: 20px;
+
+      background: radial-gradient(circle, #0bb1d3, #9f2fff 85%);
+      background-size: 300%;
+
+      animation: 5s infinite ButtonStartVpnAnimation;
+    }
+
+    section.profile form fieldset:nth-child(2) button svg {
+      color: #ffffff;
+
+      filter: drop-shadow(1px 1px 2px rgba(72, 79, 87, 0.5));
+    }
+
+    section.profile form fieldset:nth-child(2) button span {
+      color: #ffffff;
+      font-family: Arial, sans-serif;
+      font-weight: 500;
+
+      text-shadow: 1px 1px 2px rgba(72, 79, 87, 0.5);
+    }
+
+    section.carrier-list section {
+      width: 100%;
+      height: 90%;
+
+      overflow-y: auto;
+    }
+
+    section.carrier-list section div:first-child {
+      margin: 0;
+    }
+
+    section.carrier-list section div {
+      width: 100%;
+      height: auto;
+
+      display: flex;
+      flex-direction: column;
+    }
+
+    section.carrier-list section div h1 {
+      width: 100%;
+      height: 50px;
+
+      display: flex;
+      align-items: center;
+
+      padding: 0px 3%;
+
+      color: #ffffff;
+      font-size: 0.9rem;
+
+      background: #200d45;
+    }
+
+    section.carrier-list section div ul {
+      width: 100%;
+      height: auto;
+      list-style: none;
+    }
+
+    section.carrier-list section div ul li {
+      width: 100%;
+      height: 60px;
+
+      display: flex;
+      align-items: center;
+      gap: 5px;
+
+      position: relative;
+
+      margin: 1% 0;
+      padding: 0 2%;
+
+      background: #07214b;
+
+      color: #ffffff;
+
+      /* overflow: hidden; */
+      /* REMOVER CASO QUEIRA A BORDA ANIMADA E COLORIDA */
+    }
+
+    section.carrier-list section div ul li::before,
+    section.carrier-list section div ul li::after {
+      width: 100%;
+      height: calc(100% + 2px);
+
+      content: "";
+
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+
+      background: radial-gradient(circle,
+          #9f2fff,
+          #0bb1d3,
+          #7f47cb,
+          #00ffff,
+          #7a2cec,
+          #4adfdf,
+          #76fcfc,
+          #7f47cb,
+          #9f2fff,
+          #0bb1d3,
+          #7f47cb,
+          #00ffff,
+          #7a2cec,
+          #4adfdf);
+      background-size: 300%;
+
+      animation: 15s infinite ButtonStartVpnAnimation;
+    }
+
+    section.carrier-list section div ul li img {
+      width: 30px;
+    }
+
+    section.carrier-list section div ul li span {
+      width: calc(100% - 30px);
+
+      white-space: nowrap;
+      overflow: auto;
+    }
+
+    section.carrier-list section div ul li svg {
+      width: 30px;
+
+      display: none;
+    }
+
+    section.carrier-list section div ul li.active svg {
+      display: block;
+    }
+
+    section.container-tools section {
+      width: 100%;
+      height: 89%;
+
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      margin: 0 auto 0 auto;
+      padding: 2% 0 0 0;
+
+      background: transparent;
+
+      overflow: auto;
+    }
+
+    section.container-tools section button {
+      width: 100%;
+      height: auto;
+
+      display: flex;
+      align-items: center;
+      gap: 5px;
+
+      padding: 10px;
+
+      border: 0px solid transparent;
+      border-bottom: 1px solid #ddd;
+
+      background: transparent;
+    }
+
+    section.container-tools section button svg:first-child {
+      width: 20px;
+      height: 100%;
+
+      margin: 0 10px 0 0;
+
+      color: #ffffff;
+    }
+
+    section.container-tools section button div {
+      max-width: 83%;
+      height: auto;
+
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 5px;
+    }
+
+    section.container-tools section button div h3 {
+      color: #ffffff;
+    }
+
+    section.container-tools section button div p {
+      color: #ffffff;
+      text-align: left;
+    }
+
+    section.container-tools section button svg:last-child {
+      width: 16px;
+      height: 100%;
+
+      margin: 0 0 0 auto;
+
+      color: #ffffff;
+    }
+
+    section.container-logs section {
+      width: 100%;
+      height: 85%;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    section.container-logs section p {
+      width: 100%;
+      height: 90%;
+
+      padding: 3% 2% 0 2%;
+      outline: none;
+
+      border: 0;
+
+      color: #ffffff;
+      font-family: Arial, sans-serif;
+      font-size: 0.7rem;
+
+      overflow: auto;
+    }
+
+    section.container-logs section button {
+      width: auto;
+      height: auto;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+
+      padding: 3% 7%;
+
+      position: relative;
+
+      border: 0px;
+      border-radius: 20px;
+
+      background: radial-gradient(circle, #0bb1d3, #9f2fff 85%);
+      background-size: 300%;
+
+      animation: 8s infinite ButtonStartVpnAnimation;
+    }
+
+    section.container-logs section button svg {
+      color: #ffffff;
+    }
+
+    section.container-logs section button span {
+      color: #ffffff;
+    }
+
+    section.container-error section {
+      width: 100%;
+      height: 85%;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    section.container-error section h1 {
+      margin: 1% 0 0 0;
+      color: #ffffff;
+      font-size: 0.9rem;
+    }
+
+    section.container-error section p {
+      margin: 3% 0 0 0;
+      padding: 0 3%;
+
+      color: #ffffff;
+      text-align: center;
+      font-size: 0.8rem;
+      font-family: Arial, sans-serif;
+      overflow: auto;
+    }
+
+    section.active {
+      opacity: 1;
+      transform: translateX(0%);
+    }
+
+    section.container-menu {
+      width: 100%;
+      height: 10%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      /*gap: 10px;*/
+      position: relative;
+      margin: auto 0px 0px 0px;
+      padding: 0px 10px;
+      background: linear-gradient(to bottom, #4807c9, #7703c5);
+    }
+
+    section.container-menu::before,
+    section.container-menu::after {
+      width: calc(100%);
+      height: calc(100% + 4px);
+
+      content: "";
+
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -2px;
+      z-index: -1;
+
+      background: linear-gradient(135deg,
+          #6f0fd4,
+          #007a94,
+          #5417a0,
+          #008686,
+          #540fd1,
+          #299c9f,
+          #005d5d,
+          #5417a0,
+          #6f0fd4,
+          #007a94,
+          #5417a0,
+          #008686,
+          #540fd1,
+          #299c9f);
+      background-size: 300%;
+
+      animation: 30s infinite alternate-reverse ButtonStartVpnAnimation;
+    }
+
+    section.container-menu::after {
+      filter: blur(10px);
+    }
+
+    section.container-menu button {
+      flex: 1;
+      width: 60px;
+      height: 50%;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+
+      position: relative;
+      z-index: 5;
+
+      border: 0px;
+
+      background: transparent;
+    }
+
+    section.container-menu button:nth-child(2) {
+      margin-right: 10px;
+    }
+
+    section.container-menu button:nth-child(3) {
+      margin-right: 10px;
+    }
+
+    section.container-menu button:last-child {
+      margin-right: 5px;
+    }
+
+    section.container-menu button svg {
+      color: #ffffff;
+    }
+
+    section.container-menu button span {
+      color: #ffffff;
+      text-transform: uppercase;
+      font-size: 0.7rem;
+    }
+
+    section.container-toast {
+      width: 100%;
+      height: auto;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      position: absolute;
+      left: 0;
+      bottom: 2.5%;
+      right: 0;
+      z-index: 99999999;
+
+      padding: 10px 10px;
+
+      transform: scale(0);
+    }
+
+    section.container-toast div.toast {
+      width: auto;
+      height: auto;
+
+      display: flex;
+      align-items: center;
+
+      position: relative;
+
+      padding: 0px 5px 0px 0px;
+
+      border: 1px solid transparent;
+      border-radius: 10px;
+
+      overflow: hidden;
+
+      background: #192f62;
+    }
+
+    section.container-toast div.toast::before,
+    section.container-toast div.toast::after {
+      width: calc(100% + 5px);
+      height: calc(100% + 5px);
+
+      content: "";
+
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+
+      background: radial-gradient(circle,
+          #9f2fff,
+          #0bb1d3,
+          #7f47cb,
+          #00ffff,
+          #7a2cec,
+          #4adfdf,
+          #76fcfc,
+          #7f47cb,
+          #9f2fff,
+          #0bb1d3,
+          #7f47cb,
+          #00ffff,
+          #7a2cec,
+          #4adfdf);
+      background-size: 300%;
+
+      animation: 15s infinite ButtonStartVpnAnimation;
+    }
+
+    section.container-toast div.toast.error {
+      border: 1px solid #ff0000;
+    }
+
+    section.container-toast div.toast div.icon {
+      width: auto;
+      height: 100%;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      padding: 5px 4px 5px 7px;
+
+      overflow: hidden;
+
+      background: #152039;
+    }
+
+    section.container-toast div.toast.error div.icon {
+      border-right: 1px solid #ff0000;
+    }
+
+    section.container-toast div.toast div.icon img {
+      width: auto;
+      height: 100%;
+      min-height: 30px;
+    }
+
+    section.container-toast div.toast span {
+      margin-left: 5px;
+
+      color: #ffffff;
+      font-family: Arial, sans-serif;
+      font-size: 0.8rem;
+      font-weight: 300;
+    }
+
+    @media (max-width: 280px) {
+      section.container-menu button {
+        flex: 1;
+        width: 60px;
+        max-width: 60px;
+        height: 50%;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+
+        position: relative;
+        z-index: 5;
+
+        border: 0px;
+
+        background: transparent;
+      }
+
+      section.container-menu button:last-child {
+        margin-right: 10px;
+      }
+
+      section.container-menu button span {
+        font-size: 0.5rem;
+      }
+    }
+
+    @media only screen and (max-width: 576px) {
+      section.container-menu button {
+        flex: 1;
+        width: 60px;
+        max-width: 60px;
+        height: 50%;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+
+        position: relative;
+        z-index: 5;
+
+        border: 0px;
+
+        background: transparent;
+      }
+
+      section.container-menu button:last-child {
+        margin-right: 10px;
+      }
+
+      section.container-menu button span {
+        font-size: 0.6rem;
+      }
+    }
+
+    .spaceInDown {
+      -webkit-animation-name: spaceInDown;
+      animation-name: spaceInDown;
+    }
+
+    @-webkit-keyframes spaceInDown {
+      0% {
+        opacity: 0;
+        transform-origin: 50% 100%;
+        transform: scale(0.2) translate(0%, 200%);
+      }
+
+      100% {
+        opacity: 1;
+        transform-origin: 50% 100%;
+        transform: scale(1) translate(0%, 0%);
+      }
+    }
+
+    @keyframes spaceInDown {
+      0% {
+        opacity: 0;
+        transform-origin: 50% 100%;
+        transform: scale(0.2) translate(0%, 200%);
+      }
+
+      100% {
+        opacity: 1;
+        transform-origin: 50% 100%;
+        transform: scale(1) translate(0%, 0%);
+      }
+    }
+
+    .spaceOutDown {
+      -webkit-animation-name: spaceOutDown;
+      animation-name: spaceOutDown;
+    }
+
+    @-webkit-keyframes spaceOutDown {
+      0% {
+        opacity: 1;
+        transform-origin: 50% 100%;
+        transform: scale(1) translate(0%, 0%);
+      }
+
+      100% {
+        opacity: 0;
+        transform-origin: 50% 100%;
+        transform: scale(0.2) translate(0%, 200%);
+      }
+    }
+
+    @keyframes spaceOutDown {
+      0% {
+        opacity: 1;
+        transform-origin: 50% 100%;
+        transform: scale(1) translate(0%, 0%);
+      }
+
+      100% {
+        opacity: 0;
+        transform-origin: 50% 100%;
+        transform: scale(0.2) translate(0%, 200%);
+      }
+    }
+
+    .misterVpnAnimatedTime {
+      -webkit-animation-duration: 1s;
+      animation-duration: 1s;
+      -webkit-animation-fill-mode: both;
+      animation-fill-mode: both;
+    }
+
+    @media (print),
+    (prefers-reduced-motion) {
+      .misterVpnAnimatedTime {
+        -webkit-animation: unset !important;
+        animation: unset !important;
+        transition: none !important;
+      }
+    }
+
+    .flex {
+      display: flex;
+    }
+
+    .flex-row {
+      flex-direction: row;
+    }
+
+    .flex-col {
+      flex-direction: column;
+    }
+
+    .items-center {
+      align-items: center;
+    }
+
+    .justify-center {
+      justify-content: center;
+    }
+
+    .mt-4 {
+      margin-top: 1rem;
+    }
+
+    .-top-36 {
+      top: -9rem;
+    }
+
+    .relative {
+      position: relative;
+    }
+
+    .bi {
+      font-size: 24px;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+
+    .flex-col {
+      top: 0;
+      background: transparent;
+      border-radius: 27px;
+      width: 100%;
+      justify-content: center;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .icon-text-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+      font-size: 1.9rem;
+    }
+
+    .icon-text-container i {
+      color: #FFD700;
+    }
+
+    @keyframes slideGradient {
+      0% {
+        background-position: 100% 0;
+      }
+
+      100% {
+        background-position: -100% 0;
+      }
+    }
+
+    .gradient-text {
+      background: linear-gradient(90deg, #FF8C00, #F0F0F0, #FFD700);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      color: transparent;
+      animation: slideGradient 5s infinite;
+    }
+
+
+    .bi-shield-lock-fill {
+      font-size: 24px;
+      color: #051d40;
+    }
+
+    .container-carrier-selector-button {
+      transform: translateY(-50px);
+    }
+
+    .icon-text-container {
+      transform: translateY(-35px);
+    }
+
+    .hotspot-on {
+      background-color: rgb(0, 142, 19);
+    }
+
+    .hotspot-off {
+      background-color: rgb(147, 0, 0);
+    }
+
+.custom-section {
+  padding: 10px;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  max-width: 300px;
+  margin: 20px auto;
+  box-shadow: 0 10px 20px #6f0fd4;
+  background: linear-gradient(to bottom, #200d4561, #56058c48, #c49fdf5f);
+  position: relative;
+  animation: borderAnim 10s linear infinite;
+}
+
+@keyframes borderAnim {
+  0%   { border-color: #6f0fd4; }
+  7%   { border-color: #007a94; }
+  14%  { border-color: #5417a0; }
+  21%  { border-color: #008686; }
+  28%  { border-color: #540fd1; }
+  35%  { border-color: #299c9f; }
+  42%  { border-color: #005d5d; }
+  49%  { border-color: #5417a0; }
+  56%  { border-color: #6f0fd4; }
+  63%  { border-color: #007a94; }
+  70%  { border-color: #5417a0; }
+  77%  { border-color: #008686; }
+  84%  { border-color: #540fd1; }
+  91%  { border-color: #299c9f; }
+  100% { border-color: #6f0fd4; }
+}
+
+
+
+.custom-section label {
+  display: block;
+  margin-bottom: 2px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+
+.custom-section div {
+  position: relative;
+  margin-bottom: 12px;
+}
+
+.custom-section svg {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  fill: #ffffff;
+}
+
+.custom-section input {
+  width: 100%;
+  padding: 10px 15px 10px 35px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  outline: none;
+}
+
+.custom-section input:focus {
+  border-color: #007BFF;
+  box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+
+.custom-section input {
+  background: #ffffff28;
+  color: white;
+}
+
+.custom-section #eye-view,
+.custom-section #eye-not-view {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer; 
+}
+
+.hidden {
+  display: none;
+}
+
+label {
+  margin-bottom: 1px;
+}
+
+#usernamediv, #passworddiv, #uuiddiv {
+  margin-top: 1px; 
+}
+
+  </style>
+</head>
+
+<body class="bg-gradient-to-b from-purple-900 via-purple-700 to-purple-300">
+  <main>
+    <section class="home active d-flex justify-content-center align-items-center">
+      <div class="icon-text-container">
+        <i class="bi bi-shield-lock-fill"></i>
+        <span class="gradient-text">MisterVPN Tunnel</span>
+      </div>
+      <section class="container-carrier-selector-button">
+        <button type="button" id="carrier-list-button">
+          <span id="value-of-carrier-list-button">SELECIONE UMA CONFIGURAÇÃO</span>
+        </button>
+      </section>
+
+      <section class="container-button-start-stop-vpn">
+        <button type="button" title="Iniciar ou Parar conexão VPN" id="start-stop-vpn-button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-power"
+            viewBox="0 0 16 16">
+            <path d="M7.5 1v7h1V1h-1z" />
+            <path
+              d="M3 8.812a4.999 4.999 0 0 1 2.578-4.375l-.485-.874A6 6 0 1 0 11 3.616l-.501.865A5 5 0 1 1 3 8.812z" />
+          </svg>
+        </button>
+      </section>
+      <section class="nd">
+      </section>
+      <span id="version">Carregando versão...</span>
+      <section class="custom-section">
+      	<h1 style="text-align: center; color: white; font-size: 20px; background-color: rgba(0, 0, 0, 0.1); font-weight: bold;">Suas credenciais</h1><br>
+        <label for="usernamediv">Usuário</label>
+
+        <div id="usernamediv">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person"
+            viewBox="0 0 16 16">
+            <path
+              d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z" />
+          </svg>
+
+          <input id="username" type="text" name="username" placeholder="Digite seu login" />
+        </div>
+
+        <label for="passworddiv">Senha</label>
+
+        <div id="passworddiv">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-key"
+            viewBox="0 0 16 16">
+            <path
+              d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8zm4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5z" />
+            <path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+          </svg>
+
+          <input id="password" type="password" name="password" placeholder="Digite sua senha" />
+        </div>
+
+        <label for="uuiddiv" class="hidden"></label>
+
+        <div id="uuiddiv" class="hidden">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-fingerprint"
+            viewBox="0 0 16 16">
+            <path
+              d="M8.06 6.5a.5.5 0 0 1 .5.5v.776a11.5 11.5 0 0 1-.552 3.519l-1.331 4.14a.5.5 0 0 1-.952-.305l1.33-4.141a10.5 10.5 0 0 0 .504-3.213V7a.5.5 0 0 1 .5-.5Z" />
+            <path
+              d="M6.06 7a2 2 0 1 1 4 0 .5.5 0 1 1-1 0 1 1 0 1 0-2 0v.332c0 .409-.022.816-.066 1.221A.5.5 0 0 1 6 8.447c.04-.37.06-.742.06-1.115V7Zm3.509 1a.5.5 0 0 1 .487.513 11.5 11.5 0 0 1-.587 3.339l-1.266 3.8a.5.5 0 0 1-.949-.317l1.267-3.8a10.5 10.5 0 0 0 .535-3.048A.5.5 0 0 1 9.569 8Zm-3.356 2.115a.5.5 0 0 1 .33.626L5.24 14.939a.5.5 0 1 1-.955-.296l1.303-4.199a.5.5 0 0 1 .625-.329Z" />
+            <path
+              d="M4.759 5.833A3.501 3.501 0 0 1 11.559 7a.5.5 0 0 1-1 0 2.5 2.5 0 0 0-4.857-.833.5.5 0 1 1-.943-.334Zm.3 1.67a.5.5 0 0 1 .449.546 10.72 10.72 0 0 1-.4 2.031l-1.222 4.072a.5.5 0 1 1-.958-.287L4.15 9.793a9.72 9.72 0 0 0 .363-1.842.5.5 0 0 1 .546-.449Zm6 .647a.5.5 0 0 1 .5.5c0 1.28-.213 2.552-.632 3.762l-1.09 3.145a.5.5 0 0 1-.944-.327l1.089-3.145c.382-1.105.578-2.266.578-3.435a.5.5 0 0 1 .5-.5Z" />
+            <path
+              d="M3.902 4.222a4.996 4.996 0 0 1 5.202-2.113.5.5 0 0 1-.208.979 3.996 3.996 0 0 0-4.163 1.69.5.5 0 0 1-.831-.556Zm6.72-.955a.5.5 0 0 1 .705-.052A4.99 4.99 0 0 1 13.059 7v1.5a.5.5 0 1 1-1 0V7a3.99 3.99 0 0 0-1.386-3.028.5.5 0 0 1-.051-.705ZM3.68 5.842a.5.5 0 0 1 .422.568c-.029.192-.044.39-.044.59 0 .71-.1 1.417-.298 2.1l-1.14 3.923a.5.5 0 1 1-.96-.279L2.8 8.821A6.531 6.531 0 0 0 3.058 7c0-.25.019-.496.054-.736a.5.5 0 0 1 .568-.422Zm8.882 3.66a.5.5 0 0 1 .456.54c-.084 1-.298 1.986-.64 2.934l-.744 2.068a.5.5 0 0 1-.941-.338l.745-2.07a10.51 10.51 0 0 0 .584-2.678.5.5 0 0 1 .54-.456Z" />
+            <path
+              d="M4.81 1.37A6.5 6.5 0 0 1 14.56 7a.5.5 0 1 1-1 0 5.5 5.5 0 0 0-8.25-4.765.5.5 0 0 1-.5-.865Zm-.89 1.257a.5.5 0 0 1 .04.706A5.478 5.478 0 0 0 2.56 7a.5.5 0 0 1-1 0c0-1.664.626-3.184 1.655-4.333a.5.5 0 0 1 .706-.04ZM1.915 8.02a.5.5 0 0 1 .346.616l-.779 2.767a.5.5 0 1 1-.962-.27l.778-2.767a.5.5 0 0 1 .617-.346Zm12.15.481a.5.5 0 0 1 .49.51c-.03 1.499-.161 3.025-.727 4.533l-.07.187a.5.5 0 0 1-.936-.351l.07-.187c.506-1.35.634-2.74.663-4.202a.5.5 0 0 1 .51-.49Z" />
+          </svg>
+
+          <input id="uuid" type="text" placeholder="UUID" />
+        </div>
+      </fieldset>
+    </form>
+  </section>
+
+    </section>
+    </section>
+
+    <section class="carrier-list">
+      <header>
+        <svg id="back-carrier-container" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+          class="bi bi-arrow-return-left" viewBox="0 0 16 16">
+          <path fill-rule="evenodd"
+            d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z" />
+        </svg>
+
+        <h1>SELECIONE UMA OPÇÃO</h1>
+      </header>
+      <section></section>
+    </section>
+
+
+    <section class="profile">
+
+      <header>
+        <svg id="renew-alert" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+          class="bi bi-arrow-return-left" viewBox="0 0 16 16">
+          <path fill-rule="evenodd"
+            d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z" />
+        </svg>
+
+        <h1>LOGIN</h1>
+      </header>
+
+      <!--<form>
+        <fieldset>
+          <legend>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+              class="bi bi-person-exclamation" viewBox="0 0 16 16">
+              <path
+                d="M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm.256 7a4.474 4.474 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10c.26 0 .507.009.74.025.226-.341.496-.65.804-.918C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4s1 1 1 1h5.256Z" />
+              <path
+                d="M16 12.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm-3.5-2a.5.5 0 0 0-.5.5v1.5a.5.5 0 0 0 1 0V11a.5.5 0 0 0-.5-.5Zm0 4a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1Z" />
+            </svg>
+          </legend>
+
+          <p>
+            Insira suas credenciais nos campos abaixo e clique no botão
+            "Salvar credenciais". Isso o levará de volta à página inicial do
+            aplicativo, onde você poderá se conectar e desfrutar da conexão.
+          </p>
+        </fieldset>
+
+        <fieldset>
+          <legend>Informe suas credenciais</legend>
+
+          <label for="usernamediv">Nome de usuário</label>
+
+          <div id="usernamediv">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person"
+              viewBox="0 0 16 16">
+              <path
+                d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z" />
+            </svg>
+
+            <input id="username" type="text" name="username" placeholder="Usuário" />
+          </div>
+
+          <label for="passworddiv">Senha</label>
+
+          <div id="passworddiv">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-key"
+              viewBox="0 0 16 16">
+              <path
+                d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8zm4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5z" />
+              <path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+            </svg>
+
+            <input id="password" type="password" name="password" placeholder="Senha" />
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+              class="bi bi-eye-slash hidden" id="eye-not-view" viewBox="0 0 16 16">
+              <path
+                d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z" />
+              <path
+                d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829l.822.822zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829z" />
+              <path
+                d="M3.35 5.47c-.18.16-.353.322-.518.487A13.134 13.134 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7.029 7.029 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12-.708.708z" />
+            </svg>
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye"
+              id="eye-view" viewBox="0 0 16 16">
+              <path
+                d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
+              <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
+            </svg>
+          </div>
+
+          <label for="uuiddiv" class="hidden">UUID</label>
+
+          <div id="uuiddiv" class="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-fingerprint"
+              viewBox="0 0 16 16">
+              <path
+                d="M8.06 6.5a.5.5 0 0 1 .5.5v.776a11.5 11.5 0 0 1-.552 3.519l-1.331 4.14a.5.5 0 0 1-.952-.305l1.33-4.141a10.5 10.5 0 0 0 .504-3.213V7a.5.5 0 0 1 .5-.5Z" />
+              <path
+                d="M6.06 7a2 2 0 1 1 4 0 .5.5 0 1 1-1 0 1 1 0 1 0-2 0v.332c0 .409-.022.816-.066 1.221A.5.5 0 0 1 6 8.447c.04-.37.06-.742.06-1.115V7Zm3.509 1a.5.5 0 0 1 .487.513 11.5 11.5 0 0 1-.587 3.339l-1.266 3.8a.5.5 0 0 1-.949-.317l1.267-3.8a10.5 10.5 0 0 0 .535-3.048A.5.5 0 0 1 9.569 8Zm-3.356 2.115a.5.5 0 0 1 .33.626L5.24 14.939a.5.5 0 1 1-.955-.296l1.303-4.199a.5.5 0 0 1 .625-.329Z" />
+              <path
+                d="M4.759 5.833A3.501 3.501 0 0 1 11.559 7a.5.5 0 0 1-1 0 2.5 2.5 0 0 0-4.857-.833.5.5 0 1 1-.943-.334Zm.3 1.67a.5.5 0 0 1 .449.546 10.72 10.72 0 0 1-.4 2.031l-1.222 4.072a.5.5 0 1 1-.958-.287L4.15 9.793a9.72 9.72 0 0 0 .363-1.842.5.5 0 0 1 .546-.449Zm6 .647a.5.5 0 0 1 .5.5c0 1.28-.213 2.552-.632 3.762l-1.09 3.145a.5.5 0 0 1-.944-.327l1.089-3.145c.382-1.105.578-2.266.578-3.435a.5.5 0 0 1 .5-.5Z" />
+              <path
+                d="M3.902 4.222a4.996 4.996 0 0 1 5.202-2.113.5.5 0 0 1-.208.979 3.996 3.996 0 0 0-4.163 1.69.5.5 0 0 1-.831-.556Zm6.72-.955a.5.5 0 0 1 .705-.052A4.99 4.99 0 0 1 13.059 7v1.5a.5.5 0 1 1-1 0V7a3.99 3.99 0 0 0-1.386-3.028.5.5 0 0 1-.051-.705ZM3.68 5.842a.5.5 0 0 1 .422.568c-.029.192-.044.39-.044.59 0 .71-.1 1.417-.298 2.1l-1.14 3.923a.5.5 0 1 1-.96-.279L2.8 8.821A6.531 6.531 0 0 0 3.058 7c0-.25.019-.496.054-.736a.5.5 0 0 1 .568-.422Zm8.882 3.66a.5.5 0 0 1 .456.54c-.084 1-.298 1.986-.64 2.934l-.744 2.068a.5.5 0 0 1-.941-.338l.745-2.07a10.51 10.51 0 0 0 .584-2.678.5.5 0 0 1 .54-.456Z" />
+              <path
+                d="M4.81 1.37A6.5 6.5 0 0 1 14.56 7a.5.5 0 1 1-1 0 5.5 5.5 0 0 0-8.25-4.765.5.5 0 0 1-.5-.865Zm-.89 1.257a.5.5 0 0 1 .04.706A5.478 5.478 0 0 0 2.56 7a.5.5 0 0 1-1 0c0-1.664.626-3.184 1.655-4.333a.5.5 0 0 1 .706-.04ZM1.915 8.02a.5.5 0 0 1 .346.616l-.779 2.767a.5.5 0 1 1-.962-.27l.778-2.767a.5.5 0 0 1 .617-.346Zm12.15.481a.5.5 0 0 1 .49.51c-.03 1.499-.161 3.025-.727 4.533l-.07.187a.5.5 0 0 1-.936-.351l.07-.187c.506-1.35.634-2.74.663-4.202a.5.5 0 0 1 .51-.49Z" />
+            </svg>
+
+            <input id="uuid" type="text" placeholder="UUID" />
+          </div>-->
+
+          <button id="save-creds" type="button" title="Salvar informações de usuario e senha">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-save"
+              viewBox="0 0 16 16">
+              <path
+                d="M2 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H9.5a1 1 0 0 0-1 1v7.293l2.646-2.647a.5.5 0 0 1 .708.708l-3.5 3.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L7.5 9.293V2a2 2 0 0 1 2-2H14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h2.5a.5.5 0 0 1 0 1H2z" />
+            </svg>
+
+            <span>Salvar credenciais</span>
+          </button>
+        </fieldset>
+      </form>
+    </section>
+
+    <section class="container-tools">
+      <header>
+        <svg id="back-tools-container" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+          class="bi bi-arrow-return-left" viewBox="0 0 16 16">
+          <path fill-rule="evenodd"
+            d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z" />
+        </svg>
+
+        <h1>FERRAMENTAS</h1>
+      </header>
+
+      <section>
+        <button type="button" id="register-button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list-columns"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M0 .5A.5.5 0 0 1 .5 0h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 0 .5Zm13 0a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5Zm-13 2A.5.5 0 0 1 .5 2h8a.5.5 0 0 1 0 1h-8a.5.5 0 0 1-.5-.5Zm13 0a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5Zm-13 2A.5.5 0 0 1 .5 4h10a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5Zm13 0a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5Zm-13 2A.5.5 0 0 1 .5 6h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5Zm13 0a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5Zm-13 2A.5.5 0 0 1 .5 8h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5Zm13 0a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5Zm-13 2a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5Zm13 0a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5Zm-13 2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5Zm13 0a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5Zm-13 2a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5Zm13 0a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5Z" />
+          </svg>
+
+          <div>
+            <h3>REGISTRO</h3>
+            <p>
+              Verifica todos os detalhes do registro de logs ao se conectar, isso e importante para ajudar o fornecedor
+              a compreender o erro que se passa.
+            </p>
+          </div>
+
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+          </svg>
+        </button>
+
+        <button type="button" id="speedtest-tool">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-activity"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M6 2a.5.5 0 0 1 .47.33L10 12.036l1.53-4.208A.5.5 0 0 1 12 7.5h3.5a.5.5 0 0 1 0 1h-3.15l-1.88 5.17a.5.5 0 0 1-.94 0L6 3.964 4.47 8.171A.5.5 0 0 1 4 8.5H.5a.5.5 0 0 1 0-1h3.15l1.88-5.17A.5.5 0 0 1 6 2Z" />
+          </svg>
+
+          <div>
+            <h3>SPEEDTEST</h3>
+            <p>Teste a velocidade da sua conexão.</p>
+          </div>
+
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+          </svg>
+        </button>
+
+        <button type="button" id="hotspot-button-tools">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-broadcast"
+            viewBox="0 0 16 16">
+            <path
+              d="M3.05 3.05a7 7 0 0 0 0 9.9.5.5 0 0 1-.707.707 8 8 0 0 1 0-11.314.5.5 0 0 1 .707.707zm2.122 2.122a4 4 0 0 0 0 5.656.5.5 0 1 1-.708.708 5 5 0 0 1 0-7.072.5.5 0 0 1 .708.708zm5.656-.708a.5.5 0 0 1 .708 0 5 5 0 0 1 0 7.072.5.5 0 1 1-.708-.708 4 4 0 0 0 0-5.656.5.5 0 0 1 0-.708zm2.122-2.12a.5.5 0 0 1 .707 0 8 8 0 0 1 0 11.313.5.5 0 0 1-.707-.707 7 7 0 0 0 0-9.9.5.5 0 0 1 0-.707zM10 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0z" />
+          </svg>
+
+          <div>
+            <h3>HOTSPOT</h3>
+            <p>
+              Aqui você pode compartilar sua conexão VPN usando o roteador do
+              seu celular.
+            </p>
+          </div>
+
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+          </svg>
+        </button>
+
+        <button type="button" id="apn-tool">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-broadcast-pin"
+            viewBox="0 0 16 16">
+            <path
+              d="M3.05 3.05a7 7 0 0 0 0 9.9.5.5 0 0 1-.707.707 8 8 0 0 1 0-11.314.5.5 0 0 1 .707.707zm2.122 2.122a4 4 0 0 0 0 5.656.5.5 0 1 1-.708.708 5 5 0 0 1 0-7.072.5.5 0 0 1 .708.708zm5.656-.708a.5.5 0 0 1 .708 0 5 5 0 0 1 0 7.072.5.5 0 1 1-.708-.708 4 4 0 0 0 0-5.656.5.5 0 0 1 0-.708zm2.122-2.12a.5.5 0 0 1 .707 0 8 8 0 0 1 0 11.313.5.5 0 0 1-.707-.707 7 7 0 0 0 0-9.9.5.5 0 0 1 0-.707zM6 8a2 2 0 1 1 2.5 1.937V15.5a.5.5 0 0 1-1 0V9.937A2 2 0 0 1 6 8z" />
+          </svg>
+
+          <div>
+            <h3>CONFIGURAR APN</h3>
+            <p>Por aqui você sera redirecionado para as configurações de apn de seu aparelho android e fara as edições
+              que desejar.</p>
+          </div>
+
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+          </svg>
+        </button>
+
+        <button type="button" id="battery-tool">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="bi bi-battery-charging" viewBox="0 0 16 16">
+            <path
+              d="M9.585 2.568a.5.5 0 0 1 .226.58L8.677 6.832h1.99a.5.5 0 0 1 .364.843l-5.334 5.667a.5.5 0 0 1-.842-.49L5.99 9.167H4a.5.5 0 0 1-.364-.843l5.333-5.667a.5.5 0 0 1 .616-.09z" />
+            <path d="M2 4h4.332l-.94 1H2a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h2.38l-.308 1H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" />
+            <path
+              d="M2 6h2.45L2.908 7.639A1.5 1.5 0 0 0 3.313 10H2V6zm8.595-2-.308 1H12a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H9.276l-.942 1H12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.405z" />
+            <path
+              d="M12 10h-1.783l1.542-1.639c.097-.103.178-.218.241-.34V10zm0-3.354V6h-.646a1.5 1.5 0 0 1 .646.646zM16 8a1.5 1.5 0 0 1-1.5 1.5v-3A1.5 1.5 0 0 1 16 8z" />
+          </svg>
+
+          <div>
+            <h3>OTIMIZAÇÃO DE BATERIA</h3>
+            <p>
+              Aqui você consegue desativar a otimização de bateria que acaba
+              encerrando o aplicativo sem a sua permissão!
+            </p>
+          </div>
+
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+          </svg>
+        </button>
+
+        <button type="button" id="checkuser-tool">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="bi bi-person-lines-fill" viewBox="0 0 16 16">
+            <path
+              d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z" />
+          </svg>
+
+          <div>
+            <h3>DETALHES DO LOGIN</h3>
+            <p>
+              Aqui você consegue visualizar alguns detalhes do seu perfil.
+            </p>
+          </div>
+
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+          </svg>
+        </button>
+
+        <button type="button" id="button-open-clear-data-app">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash"
+            viewBox="0 0 16 16">
+            <path
+              d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z" />
+            <path
+              d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z" />
+          </svg>
+
+          <div>
+            <h3>LIMPAR DADOS</h3>
+            <p>
+              Aqui você pode fazer a limpeza do cache e dados do aplicativo, lembre-se de ter internet para atualizar o
+              aplicativo novamente.
+            </p>
+          </div>
+
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+          </svg>
+        </button>
+
+        <button type="button" id="button-open-terms-app">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="bi bi-journal-medical" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M8 4a.5.5 0 0 1 .5.5v.634l.549-.317a.5.5 0 1 1 .5.866L9 6l.549.317a.5.5 0 1 1-.5.866L8.5 6.866V7.5a.5.5 0 0 1-1 0v-.634l-.549.317a.5.5 0 1 1-.5-.866L7 6l-.549-.317a.5.5 0 0 1 .5-.866l.549.317V4.5A.5.5 0 0 1 8 4zM5 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z" />
+            <path
+              d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z" />
+            <path
+              d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z" />
+          </svg>
+
+          <div>
+            <h3>TERMOS DE USO</h3>
+            <p>
+              Aqui você consegue ler os termos de uso e licença do aplicativo.
+            </p>
+          </div>
+
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+          </svg>
+        </button>
+      </section>
+    </section>
+
+    <section class="container-logs">
+      <header>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+          class="bi bi-arrow-return-left" viewBox="0 0 16 16">
+          <path fill-rule="evenodd"
+            d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z" />
+        </svg>
+
+        <h1>REGISTRO</h1>
+      </header>
+
+      <section>
+        <p></p>
+
+        <button type="button" id="clear-logs">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash"
+            viewBox="0 0 16 16">
+            <path
+              d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z" />
+            <path
+              d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z" />
+          </svg>
+
+          <span>LIMPAR REGISTRO</span>
+        </button>
+      </section>
+    </section>
+
+ <!--  <section class="loading">
+      <section>
+        <header>
+          <h1>CARREGANDO INFORMAÇÕES</h1>
+
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg"
+            id="loading-container-close" viewBox="0 0 16 16">
+            <path
+              d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" />
+          </svg>
+        </header>
+
+        <div class="loading"></div>
+      </section>
+    </section>
+
+    <section class="checkuser">
+      <section>
+        <header>
+          <h1>DETALHES DO USUÁRIO</h1>
+
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg"
+            id="checkuser-close" viewBox="0 0 16 16">
+            <path
+              d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" />
+          </svg>
+        </header>
+
+        <section>
+          <div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill"
+              viewBox="0 0 16 16">
+              <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+            </svg>
+
+            <span id="checkuser-name">USUÁRIO: A@MRSILENT1</span>
+          </div>
+
+          <div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+              class="bi bi-calendar-fill" viewBox="0 0 16 16">
+              <path
+                d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V5h16V4H0V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5z" />
+            </svg>
+
+            <span id="checkuser-expires">EXPIRA EM: 25/09/2023</span>
+          </div>
+
+          <div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock-fill"
+              viewBox="0 0 16 16">
+              <path
+                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
+            </svg>
+
+            <span id="checkuser-remaing-days">RESTA: 30 DIAS</span>
+          </div>
+
+          <div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-phone-fill"
+              viewBox="0 0 16 16">
+              <path
+                d="M3 2a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V2zm6 11a1 1 0 1 0-2 0 1 1 0 0 0 2 0z" />
+            </svg>
+
+            <span id="checkuser-total-conection">CONEXÕES: 1/10</span>
+          </div>
+        </section>
+      </section>
+    </section>
+--> 
+    <section class="clean-data-app">
+      <section>
+        <header>
+          <h1>DESEJA CONFIRMAR ESSA AÇÃO ?</h1>
+
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg"
+            id="hidden-clear-data-app" viewBox="0 0 16 16">
+            <path
+              d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" />
+          </svg>
+        </header>
+
+        <section>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="bi bi-exclamation-lg" viewBox="0 0 16 16">
+            <path
+              d="M7.005 3.1a1 1 0 1 1 1.99 0l-.388 6.35a.61.61 0 0 1-1.214 0L7.005 3.1ZM7 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0Z" />
+          </svg>
+
+          <h1>TEM CERTEZA DA AÇÃO ?</h1>
+
+          <p>
+            Ao efetuar a ação de limpar os dados do aplicativo, será possível
+            carregar somente as configurações mais recentes mediante uma
+            conexão ativa com a internet.
+          </p>
+
+          <button type="button" id="confirm-clean-data-app">
+            <span>CONFIRMAR</span>
+          </button>
+        </section>
+      </section>
+    </section>
+
+    <section class="hotspot-container">
+      <section>
+        <header>
+          <h1>ROTEADOR WIFI - HOTSPOT</h1>
+
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg"
+            id="hidden-hotspot-container" viewBox="0 0 16 16">
+            <path
+              d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" />
+          </svg>
+        </header>
+
+        <section>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-router-fill"
+            viewBox="0 0 16 16">
+            <path
+              d="M5.525 3.025a3.5 3.5 0 0 1 4.95 0 .5.5 0 1 0 .707-.707 4.5 4.5 0 0 0-6.364 0 .5.5 0 0 0 .707.707Z" />
+            <path d="M6.94 4.44a1.5 1.5 0 0 1 2.12 0 .5.5 0 0 0 .708-.708 2.5 2.5 0 0 0-3.536 0 .5.5 0 0 0 .707.707Z" />
+            <path
+              d="M2.974 2.342a.5.5 0 1 0-.948.316L3.806 8H1.5A1.5 1.5 0 0 0 0 9.5v2A1.5 1.5 0 0 0 1.5 13H2a.5.5 0 0 0 .5.5h2A.5.5 0 0 0 5 13h6a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5h.5a1.5 1.5 0 0 0 1.5-1.5v-2A1.5 1.5 0 0 0 14.5 8h-2.306l1.78-5.342a.5.5 0 1 0-.948-.316L11.14 8H4.86L2.974 2.342ZM2.5 11a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1Zm4.5-.5a.5.5 0 1 1 1 0 .5.5 0 0 1-1 0Zm2.5.5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1Zm1.5-.5a.5.5 0 1 1 1 0 .5.5 0 0 1-1 0Zm2 0a.5.5 0 1 1 1 0 .5.5 0 0 1-1 0Z" />
+            <path d="M8.5 5.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0Z" />
+          </svg>
+
+          <h1 id="title-hotspot">ROTEAMENTO DESLIGADO</h1>
+
+          <p>
+            Ao ativar o hotspot com compartilhamento de VPN do seu celular, um
+            IP local é gerado no seu dispositivo. Este IP é usado como proxy
+            no dispositivo conectado à sua rede Wi-Fi.
+            <br />
+            <br />
+
+            <b>SIGA ESTES PASSOS IMPORTANTES</b>
+
+            <br />
+            <br />
+            1 - Ligue o roteador do celular primeiro.
+            <br /><br />
+            2 - Ative o compartilhamento de VPN.
+            <br /><br />
+            3 - Use o botão para controlar o roteador.
+            <br /><br />
+            4 - Encontre o segundo IP na barra de notificações.
+            <br /><br />
+            5 - Copie o segundo IP e use como proxy no dispositivo conectado à
+            rede.
+            <br />
+            <br />
+
+            Lembre-se: O segundo IP é seu proxy. Isso garantirá o correto
+            funcionamento do compartilhamento de VPN via hotspot do celular.
+          </p>
+
+          <button type="button" id="enable-hotspot">
+            <span id="value-button-hotspot">LIGAR HOTSPOT</span>
+          </button>
+        </section>
+      </section>
+    </section>
+
+    <section class="terms-container">
+      <section>
+        <header>
+          <h1>TERMOS DE USO</h1>
+
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg"
+            id="hidden-terms-container" viewBox="0 0 16 16">
+            <path
+              d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" />
+          </svg>
+        </header>
+
+        <p>
+          Importante: Ao utilizar o nosso aplicativo, é fundamental que você
+          esteja ciente e concorde com os seguintes pontos:
+
+          <br /><br /><br />
+
+          1° - Nosso suporte está disponível para ajudar clientes que
+          enfrentam problemas como dificuldades de conexão, informações
+          incorretas, ou se o aplicativo não está instalado corretamente.
+
+          <br /><br />
+
+          2° - Não somos responsáveis por questões relacionadas à manutenção
+          da sua operadora, quedas na conexão causadas por fatores externos ou
+          problemas climáticos que possam afetar a velocidade da sua internet
+          através da VPN.
+
+          <br /><br />
+
+          3° - Caso haja uma interrupção no serviço devido à operadora, não
+          efetuamos reembolsos.
+          <br /><br />
+
+          4° - Não nos responsabilizamos por sites e jogos que impeçam o uso
+          de VPN.
+
+          <br /><br />
+
+          5° - É permitido usar apenas o número de dispositivos estipulado no
+          seu contrato com o revendedor autorizado.
+
+          <br /><br />
+
+          6° - É estritamente proibido o uso de aplicativos torrent ou P2P,
+          pois eles podem prejudicar o desempenho dos nossos servidores.
+
+          <br /><br />
+
+          7° - É importante que, independentemente da sua operadora, você faça
+          uma recarga a cada 2 meses para garantir um serviço contínuo.
+
+          <br /><br />
+
+          8° - Mantenha o aplicativo sempre atualizado, pois as atualizações
+          são necessárias para garantir o bom funcionamento do serviço.
+
+          <br /><br /><br /><br />
+
+          Agradecemos por escolher o nosso aplicativo e desejamos a você uma
+          ótima experiência de navegação!<br><br><b>Atenciosamente,
+            <br>Equipe MisterVPN.</b>
+        </p>
+      </section>
+    </section>
+
+    <section class="container-error">
+      <header>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+          class="bi bi-arrow-return-left" viewBox="0 0 16 16">
+          <path fill-rule="evenodd"
+            d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z" />
+        </svg>
+
+        <h1>ERROR</h1>
+      </header>
+
+      <section>
+        <h1 id="error-title"></h1>
+
+        <p id="error-log"></p>
+      </section>
+    </section>
+
+    <section class="container-toast misterVpnAnimatedTime">
+      <div class="toast">
+        <div class="icon">
+          <img
+            src="data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg id='Camada_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 255.17 400'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23fff;%7D.cls-2%7Bfill:%239f2eff;%7D.cls-3%7Bfill:none;stroke:url(%23Gradiente_sem_nome_253-3);%7D.cls-3,.cls-4%7Bstroke-miterlimit:10;%7D.cls-4%7Bfill:url(%23Gradiente_sem_nome_253);stroke:url(%23Gradiente_sem_nome_253-2);%7D.cls-5%7Bfill:%230ab1d3;%7D%3C/style%3E%3ClinearGradient id='Gradiente_sem_nome_253' x1='76.24' y1='76.85' x2='139.38' y2='76.85' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%230bb1d3'/%3E%3Cstop offset='1' stop-color='%239f2fff'/%3E%3C/linearGradient%3E%3ClinearGradient id='Gradiente_sem_nome_253-2' x1='75.93' x2='139.69' xlink:href='%23Gradiente_sem_nome_253'/%3E%3ClinearGradient id='Gradiente_sem_nome_253-3' x1='72.44' y1='201.84' x2='127.55' y2='201.84' xlink:href='%23Gradiente_sem_nome_253'/%3E%3C/defs%3E%3Ccircle class='cls-5' cx='167.12' cy='32.88' r='32.88'/%3E%3Ccircle class='cls-1' cx='42.09' cy='132.11' r='42.09'/%3E%3Ccircle class='cls-2' cx='169.67' cy='314.5' r='85.5'/%3E%3Cline class='cls-4' x1='139.38' y1='51.86' x2='76.24' y2='101.85'/%3E%3Cline class='cls-3' x1='72.84' y1='165.78' x2='127.15' y2='237.9'/%3E%3C/svg%3E"
+            alt="Icone do toast" />
+        </div>
+
+        <span class="text">Procurando atualizações</span>
+      </div>
+    </section>
+  </main>
+
+  <section class="container-menu">
+    <button id="home" type="button" title="Inicio">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house"
+        viewBox="0 0 16 16">
+        <defs>
+          <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#0bb1d3" />
+            <stop offset="100%" stop-color="#9f2fff" />
+          </linearGradient>
+        </defs>
+        <path
+          d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5 5 5Z" />
+      </svg>
+
+      <span>Inicio</span>
+    </button>
+
+   <!--<button id="login" type="button" title="Login">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person"
+        viewBox="0 0 16 16">
+        <path
+          d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z" />
+      </svg>
+
+      <span>LOGIN</span>
+    </button>-->
+
+
+
+    <button id="register-button" type="button" title="Server">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lislumns"
+        viewBox="0 0 16 16">
+        <path fill-rule="evenodd"
+          d="M0 .5A.5.5 0 0 1 .5 0h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 0 .5Zm13 0a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5Zm-13 2A.5.5 0 0 1 .5 2h8a.5.5 0 0 1 0 1h-8a.5.5 0 0 1-.5-.5Zm13 0a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5Zm-13 2A.5.5 0 0 1 .5 4h10a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5Zm13 0a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5Zm-13 2A.5.5 0 0 1 .5 6h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5Zm13 0a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5Zm-13 2A.5.5 0 0 1 .5 8h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5Zm13 0a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5Zm-13 2a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5Zm13 0a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5Zm-13 2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5Zm13 0a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5Zm-13 2a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5Zm13 0a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5Z" />
+      </svg>
+
+      <span>Server</span>
+    </button>
+
+
+    <button id="tools" type="button" title="Ferramentas">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-nut"
+        viewBox="0 0 16 16">
+        <path
+          d="m11.42 2 3.428 6-3.428 6H4.58L1.152 8 4.58 2h6.84zM4.58 1a1 1 0 0 0-.868.504l-3.428 6a1 1 0 0 0 0 .992l3.428 6A1 1 0 0 0 4.58 15h6.84a1 1 0 0 0 .868-.504l3.429-6a1 1 0 0 0 0-.992l-3.429-6A1 1 0 0 0 11.42 1H4.58z" />
+        <path
+          d="M6.848 5.933a2.5 2.5 0 1 0 2.5 4.33 2.5 2.5 0 0 0-2.5-4.33zm-1.78 3.915a3.5 3.5 0 1 1 6.061-3.5 3.5 3.5 0 0 1-6.062 3.5z" />
+      </svg>
+
+      <span>Ajustes</span>
+    </button>
+    
+    <button id="update" type="button" title="Atualizar">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise"
+        viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z" />
+        <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z" />
+      </svg>
+
+      <span>Atualizar</span>
+    </button>
+  </section>
+
+  <!-- FUNÇÕES DO APP -->
+  <script>
+  
+    const appGetStatusbarHeightSize = () => DtGetStatusBarHeight.execute()
+    const appGetNavbarHeightSize = () => DtGetNavigationBarHeight.execute()
+
+    const appTranslateText = (label) => DtTranslateText.execute(label)
+    const appGetConfigLabel = (label) => DtGetAppConfig.execute(label)
+
+    const AppUpdate = () => DtStartAppUpdate.execute()
+
+    const appAllConfigs = () => DtGetConfigs.execute()
+    const appSetConfig = (id) => DtSetConfig.execute(id)
+    const appGetDefaultConfig = () => DtGetDefaultConfig.execute()
+    const appGetConfigVersion = () => `${DtGetLocalConfigVersion.execute() ?? "1.0"}`;
+
+    const appGetUsername = () => DtUsername.get()
+    const appSetUsername = (username) => DtUsername.set(username)
+    const appGetPassword = () => DtPassword.get()
+    const appSetPassword = (password) => DtPassword.set(password)
+    const appGetUUID = () => DtUuid.get()
+    const appSetUUID = (uuid) => DtUuid.set(uuid)
+
+    const appGetConnectionState = () => DtGetVpnState.execute()
+    const appStartConnection = () => DtExecuteVpnStart.execute()
+    const appStopConnection = () => DtExecuteVpnStop.execute()
+
+    const appGetStatusHotspot = () => DtGetStatusHotSpotService.execute()
+    const appStartHotspot = () => DtStartHotSpotService.execute()
+    const appStopHotspot = () => DtStopHotSpotService.execute()
+
+    const appGetLogs = () => DtGetLogs.execute()
+    const appCleanLogs = () => DtClearLogs.execute()
+
+    const appBatteryOptimize = () => DtIgnoreBatteryOptimizations.execute()
+    const appApnConfiguration = () => DtStartApnActivity.execute()
+    const appStartCheckUser = () => DtStartCheckUser.execute()
+    const appIntoBrowser = (url) => DtStartWebViewActivity.execute(url)
+    const appClearData = () => DtCleanApp.execute()
+  </script>
+
+  <!-- VARIAVEIS LET -->
+  <script>
+    let timeoutId
+  </script>
+
+  <!-- DOM WRAPPER -->
+  <script>
+    const Dom = (selector) => {
+      const _elements = document.querySelectorAll(selector)
+
+      const wrapper = {
+        on(listeners) {
+          for (const [event, listener] of Object.entries(listeners)) {
+            _elements.forEach((element) => {
+              element.addEventListener(event, listener)
             })
+          }
 
-            passwordGroupComponent.setStyles({
-                display: isV2ray || data?.auth?.password ? 'none' : 'flex',
+          return wrapper
+        },
+        addClass: (...tokens) => {
+          _elements.forEach((element) => {
+            element.classList.add(...tokens)
+          })
+
+          return wrapper
+        },
+        removeClass: (...tokens) => {
+          _elements.forEach((element) => {
+            element.classList.remove(...tokens)
+          })
+
+          return wrapper
+        },
+        toggleClass: (token, force) => {
+          _elements.forEach((element) => {
+            element.classList.toggle(token, force)
+          })
+
+          return wrapper
+        },
+        style(styles) {
+          for (const [property, value] of Object.entries(styles)) {
+            console.log(value)
+            _elements.forEach((element) => {
+              element.style[property] = value
             })
+          }
 
-            v2rayUuidGroupComponent.setStyles({
-                display: !isV2ray || data?.auth?.v2ray_uuid ? 'none' : 'flex',
-            })
-        }
+          return wrapper
+        },
+        attr(attrs) {
+          for (const [name, value] of Object.entries(attrs)) {
+            _elements.forEach((element) => element.setAttribute(name, value))
+          }
 
-        const dtVpnStateListener = state => {
-            const isRunning = state != 'DISCONNECTED';
+          return wrapper
+        },
+        html(value) {
+          _elements.forEach((element) => (element.innerHTML = value))
+          return wrapper
+        },
+      }
 
-            vpnStateComponent.setState((window?.DtTranslateText?.execute('LBL_STATE_' + state) ?? 'UNKNOWN').toUpperCase())
+      return wrapper
+    }
+  </script>
 
-            usernameInput.setEnabled(!isRunning)
-            passwordInput.setEnabled(!isRunning)
-        }
+  <!-- AÇÕES EM VARIAVEIS ROOT -->
+  <script>
+    document.documentElement.style.setProperty(
+      "--space-status-bar",
+      `${appGetStatusbarHeightSize() + 10}px`
+    )
+    document.documentElement.style.setProperty(
+      "--space-nav-bar",
+      `${appGetNavbarHeightSize() + 10}px`
+    )
+  </script>
 
-        const dtOnNewLogListener = () => {
-            const mock = [];
-            for (let i = 0; i < 300; i++) {
-                mock.push({ 'TIME': 'MESSAGE ' + i })
-            }
-            const data = JSON.parse(window?.DtGetLogs?.execute() ?? JSON.stringify(mock))
-            loggerBodyComponent.setItems(data.map(log => {
-                return new LoggerItemComponent({}, Object.keys(log)[0] + ' ' + log[Object.keys(log)])
-            }))
-        }
+  <!-- VARIAVEIS -->
+  <script>
+    const Body = Dom("body")
 
-        dtVpnStateListener(window?.DtGetVpnState?.execute() ?? 'DISCONNECTED')
-        dtOnNewLogListener()
+    const HomeHeader = Dom("section.home header")
+    const LogoHeader = Dom("#app_logo")
 
-        dtConfigClickListener()
+    const HomeContainer = Dom("section.home")
+    const CarrierContainer = Dom("section.carrier-list")
+    const ProfileContainer = Dom("section.profile")
+    const ToolsContainer = Dom("section.container-tools")
+    const RegisterContainer = Dom("section.container-logs")
+    const ErrorContainer = Dom("section.container-error")
+    const LoadingContainer = Dom("section.loading")
+    //const CheckuserContainer = Dom("section.checkuser")
+    const ClearDataContainer = Dom("section.clean-data-app")
+    const HotspotContainer = Dom("section.hotspot-container")
+    const TermsContainer = Dom("section.terms-container")
 
-        function createElements() {
-            const container = document.createElement("div");
-            container.classList.add("container");
-            container.style.position = 'absolute';
+    const BackButtonCarrierContainer = Dom("#back-carrier-container")
+    const BackProfileContainer = Dom("#back-profile-container")
+    const BackToolsContainer = Dom("#back-tools-container")
+    const BackRegisterContainer = Dom("section.container-logs header svg")
+    const BackErrorContainer = Dom("section.container-error header svg")
+    const BackLoadingContainer = Dom("#loading-container-close")
+    const BackCheckuserContainer = Dom("#checkuser-close")
+    const BackClearDataContainer = Dom("#hidden-clear-data-app")
+    const BackHotspotContainer = Dom("#hidden-hotspot-container")
+    const BackTermsContainer = Dom("#hidden-terms-container")
 
-            const content = document.createElement("div");
-            content.classList.add("content");
+    const RenewContainer = Dom("section.renew-alert")
+    const ButtonRenew = Dom("#renew-button")
 
-            const background = document.createElement("div");
+    const ConfigVersion = Dom("#version")
 
-            const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-            svg.setAttribute("width", "16");
-            svg.setAttribute("height", "16");
-            svg.setAttribute("fill", "currentColor");
-            svg.classList.add("bi", "bi-git");
-            svg.setAttribute("viewBox", "0 0 16 16");
+    const ButtonOfCarrierList = Dom("#carrier-list-button")
+    const ValueOfCarrierListButton = Dom("#value-of-carrier-list-button")
 
-            const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-            path.setAttribute("d", "M15.698 7.287 8.712.302a1.03 1.03 0 0 0-1.457 0l-1.45 1.45 1.84 1.84a1.223 1.223 0 0 1 1.55 1.56l1.773 1.774a1.224 1.224 0 0 1 1.267 2.025 1.226 1.226 0 0 1-2.002-1.334L8.58 5.963v4.353a1.226 1.226 0 1 1-1.008-.036V5.887a1.226 1.226 0 0 1-.666-1.608L5.093 2.465l-4.79 4.79a1.03 1.03 0 0 0 0 1.457l6.986 6.986a1.03 1.03 0 0 0 1.457 0l6.953-6.953a1.031 1.031 0 0 0 0-1.457");
-            svg.appendChild(path);
+    const ButtonVpnStartOrStop = Dom("#start-stop-vpn-button")
 
-            const span = document.createElement("span");
-            span.classList.add("ms-2");
-            span.setAttribute("id", "version");
-            span.textContent = ' 1.1';
+    const LabelDivUser = Dom("label[for='usernamediv']")
+    const LabelDivPassword = Dom("label[for='passworddiv']")
+    const LabelUUID = Dom("label[for='uuiddiv']")
+    const DivUsername = Dom("#usernamediv")
+    const DivPassword = Dom("#passworddiv")
+    const DivUUID = Dom("#uuiddiv")
+    const InputUsername = Dom("#username")
+    const InputPassword = Dom("#password")
+    const InputUUID = Dom("#uuid")
+    const EyeViewPasswordInput = Dom("#eye-view")
+    const EyeNotViewPasswordInput = Dom("#eye-not-view")
+    const ButtonSaveCreds = Dom("#save-creds")
 
-            // Montando a estrutura
-            background.appendChild(svg);
-            background.appendChild(span);
-            content.appendChild(background);
-            container.appendChild(content);
+    const CheckuserName = Dom("#checkuser-name")
+    const CheckuserExpires = Dom("#checkuser-expires")
+    const CheckuserRemainingDays = Dom("#checkuser-remaing-days")
+    const CheckuserTotalConnection = Dom("#checkuser-total-conection")
 
-            // Aplicando estilos
-            container.style.fontSize = '1rem';
-            container.style.fontFamily = 'Verdana';
-            container.style.color = TEXT_COLOR;
-            const statusBarHeight = window?.DtGetStatusBarHeight?.execute();
-            const extraPixels = 0; // Number of extra pixels you want to add
-            const defaultHeight = 60; // Default height if statusBarHeight is undefined
+    const LogsTextarea = Dom("section.container-logs section p")
 
-            const totalTopValue = (statusBarHeight !== undefined ? statusBarHeight : defaultHeight) + extraPixels;
+    const ToastContainer = Dom("section.container-toast")
+    const Toast = Dom("section.container-toast div.toast")
+    const ToastIcon = Dom("section.container-toast div.toast div.icon")
+    const ToastText = Dom("section.container-toast div.toast span.text")
 
-            container.style.top = `${totalTopValue}px`;
+    const HomeButton = Dom("#home")
+    const LoginButton = Dom("#login")
+    const ToolsButton = Dom("#tools")
+    const UpdateButton = Dom("#update")
 
-            container.style.right = '10px';
+    const ButtonRegister = Dom("#register-button")
+    const ButtonCleanRegisterLogs = Dom("#clear-logs")
+
+    const ButtonStartStopHotspot = Dom("#enable-hotspot")
+    const ButtonOpenHotspotContainer = Dom("#hotspot-button-tools")
+    const TitleHotspotContainer = Dom("#title-hotspot")
+    const ValueOfButtonHotspotContainer = Dom("#value-button-hotspot")
+
+    const ButtonOpenClearDataContainer = Dom("#button-open-clear-data-app")
+    const ButtonConfirmClearData = Dom("#confirm-clean-data-app")
+
+    const ButtonOpenSpeedtest = Dom("#speedtest-tool")
+    const ButtonOpenApnConfig = Dom("#apn-tool")
+    const ButtonOpenBatteryOptimization = Dom("#battery-tool")
+    const ButtonOpenCheckuser = Dom("#checkuser-tool")
+    const ButtonOpenTerms = Dom("#button-open-terms-app")
+
+    const ErrorTitle = Dom("#error-title")
+    const ErrorDescription = Dom("#error-log")
+  </script>
+
+  <!-- FUNÇÕES PARA O APP -->
+  <script>
+    const dtShowSuccessToastListener = (value) => showToastContainer(value)
+    const dtShowErrorToastListener = (value) =>
+      showToastContainerWithError(value)
+    const dtConfigClickListener = () => {
+      toggleInput()
+      writeInputValue()
+    }
+    const dtVpnStateListener = (state) => connectionState(state)
+    const dtOnNewLogListener = () => writeLogsRegister()
+    const dtMessageErrorListener = (model) => writeErrorContainer(model)
+    const dtCheckUserStartedListener = () => showLoadingContainer()
+    const dtCheckUserModelListener = (model) => writeCheckuserContainer(model)
+  </script>
+
+  <!-- FUNÇÕES DO LAYOUT -->
+  <script>
+    const appLogo = () => {
+      const logo = appGetConfigLabel("APP_LOGO")
+
+      if (!logo) {
+        return ""
+      } else {
+        return `${JSON.parse(logo).value}`
+      }
+    }
+    const appBackground = () => {
+      const background_type = appGetConfigLabel("APP_BACKGROUND_TYPE")
+      const background_color = appGetConfigLabel("APP_BACKGROUND_COLOR")
+      const background_image = appGetConfigLabel("APP_BACKGROUND_IMAGE")
+
+      if (!background_type) {
+        return ""
+      } else if (JSON.parse(background_type)?.value === "COLOR") {
+        return `${JSON.parse(background_color).value}`
+      } else {
+        return `url(${JSON.parse(background_image).value})`
+      }
+    }
+
+    const getConfigName = () => {
+      if (!appGetDefaultConfig()) {
+        return `${appTranslateText("LBL_CHOOSE_CONFIG")}`
+      } else {
+        return `${JSON.parse(appGetDefaultConfig())?.name}`
+      }
+    }
+
+    const getUsernameValue = () => `${appGetUsername() ?? ""}`
+    const getPasswordValue = () => `${appGetPassword() ?? ""}`
+    const getUUIDValue = () => `${appGetUUID() ?? ""}`
+
+    const getUsernamePlaceholder = () => `${appTranslateText("LBL_USERNAME")}`
+    const getPassowrdPlaceholder = () => `${appTranslateText("LBL_PASSWORD")}`
+    const getUUIDPlaceholder = () => `${appTranslateText("LBL_UUID")}`
+
+    const toggleInput = () => {
+      if (checkV2ray()) {
+        LabelDivUser.style({ display: "none" })
+        DivUsername.style({ display: "none" })
+
+        LabelDivPassword.style({ display: "none" })
+        DivPassword.style({ display: "none" })
+
+        LabelUUID.removeClass("hidden")
+        DivUUID.removeClass("hidden")
+      } else {
+        LabelDivUser.style({ display: "block" })
+        DivUsername.style({ display: "flex" })
+
+        LabelDivPassword.style({ display: "block" })
+        DivPassword.style({ display: "flex" })
+
+        LabelUUID.addClass("hidden")
+        DivUUID.addClass("hidden")
+      }
+    }
+    const writeInputValue = () => {
+      InputUsername.attr({ value: getUsernameValue() })
+      InputPassword.attr({ value: getPasswordValue() })
+      InputUUID.attr({ value: getUUIDValue() })
+    }
+    const writeInputPlaceholder = () => {
+      InputUsername.attr({ placeholder: getUsernamePlaceholder() })
+      InputPassword.attr({ placeholder: getPassowrdPlaceholder() })
+      InputUUID.attr({ placeholder: getUUIDPlaceholder() })
+    }
+    const showInputPasswordValue = () => {
+      EyeViewPasswordInput.addClass("hidden")
+      EyeNotViewPasswordInput.removeClass("hidden")
+      InputPassword.attr({ type: "text" })
+    }
+    const hiddenInputPasswordValue = () => {
+      EyeViewPasswordInput.removeClass("hidden")
+      EyeNotViewPasswordInput.addClass("hidden")
+      InputPassword.attr({ type: "password" })
+    }
+
+    const checkV2ray = () => {
+      const data = JSON.parse(appGetDefaultConfig())
+
+      if (!appGetDefaultConfig()) {
+        return false
+      } else if (data?.mode?.toLowerCase()?.startsWith("v2ray")) {
+        return true
+      } else {
+        return false
+      }
+    }
+
+    const getConnectionState = () => {
+      const rootStyles = getComputedStyle(document.documentElement)
+
+      const defaultColor = "--default-background-color"
+      const connectedColor = "--connected-background-color"
+      const connectingColor = "--connecting-background-color"
+      const errorColor = "--error-background-color"
+
+      const states = {
+        disconnected: () => {
+          const gradientColor = rootStyles.getPropertyValue(defaultColor)
+
+          document.documentElement.style.setProperty(
+            defaultColor,
+            "linear-gradient(135deg,#9f2fff,#0bb1d3,#7f47cb,#00ffff,#7a2cec,#4adfdf,#76fcfc,#7f47cb,#9f2fff,#0bb1d3,#7f47cb,#00ffff,#7a2cec,#4adfdf)"
+          )
+
+          return states
+        },
+        connecting: () => {
+          const gradientColor = rootStyles.getPropertyValue(connectingColor)
+
+          document.documentElement.style.setProperty(
+            defaultColor,
+            gradientColor
+          )
+
+          return states
+        },
+        connected: () => {
+          const gradientColor = rootStyles.getPropertyValue(connectedColor)
+
+          document.documentElement.style.setProperty(
+            defaultColor,
+            gradientColor
+          )
+
+          return states
+        },
+        error: () => {
+          const gradientColor = rootStyles.getPropertyValue(errorColor)
+
+          document.documentElement.style.setProperty(
+            defaultColor,
+            gradientColor
+          )
+
+          return states
+        },
+      }
+
+      return states
+    }
+
+    const connectionState = (state) => {
+      const connectionValue = `${state ?? appGetConnectionState()}`
+
+      switch (connectionValue) {
+        case "DISCONNECTED":
+          getConnectionState().disconnected()
+          break
+        case "CONNECTING":
+          getConnectionState().connecting()
+          break
+        case "CONNECTED":
+          getConnectionState().connected()
+          break
+        case "STOPPING":
+          getConnectionState().connecting()
+          break
+        case "NO_NETWORK":
+          getConnectionState().error()
+          break
+        case "AUTH":
+          getConnectionState().connecting()
+          break
+        case "AUTH_FAILED":
+          getConnectionState().connecting()
+          break
+      }
+    }
 
 
+    const startStopConnection = () => {
+      const state = appGetConnectionState()
 
-            // Adicionando ao DOM
-            document.body.appendChild(container);
+      state !== "CONNECTED" ? appStartConnection() : appStopConnection()
+    }
 
-            // Atualizar a versão a cada 2 segundos
-            setInterval(updateVersion, 2000);
-        }
+    const writeLogsRegister = () => {
+      const data = JSON.parse(appGetLogs())
 
-        // Função para atualizar a versão
-        function updateVersion() {
-            const versionElement = document.getElementById('version');
-            const version = window?.DtGetLocalConfigVersion?.execute() ?? ' 1.0';
-            versionElement.textContent = version;
-        }
+      let logs = ""
 
-        // Chamar a função para criar elementos e configurar a versão inicial
-        createElements();
-        updateVersion();
+      data.forEach((item) => {
+        logs += `${Object.keys(item)} ${item[Object.keys(item)]} <br>`
+      })
 
+      LogsTextarea.html(logs)
+      document.querySelector("section.container-logs section p").scrollTop =
+        document.querySelector(
+          "section.container-logs section p"
+        ).scrollHeight
+    }
 
+    const writeCarrierList = () => {
+      const container = document.querySelector("section.carrier-list section")
+      const existingCategories = container.querySelectorAll("div").length
 
-    </script>
+      container.innerHTML = ""
+
+      const data = JSON.parse(appAllConfigs())
+      data.sort((a, b) => a.sorter - b.sorter)
+      data.forEach((item, index) =>
+        item.items.sort((a, b) => a.sorter - b.sorter)
+      )
+      data.forEach((category) => {
+        const div = document.createElement("div")
+        const h1 = document.createElement("h1")
+
+        h1.innerHTML = category.name
+
+        const ul = document.createElement("ul")
+
+        category.items.forEach((item) => {
+          const li = document.createElement("li")
+
+          li.innerHTML = `<img src="${item.icon}" alt="icon" /> <span>${item.name}</span> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" /></svg>`
+
+          li.addEventListener("click", (e) => {
+            appSetConfig(item.id)
+            hiddenCarrierListContainer()
+            document
+              .querySelectorAll("li")
+              .forEach((item, index) => item.classList.remove("active"))
+            li.classList.add("active")
+            writeValueOnButtonOfCarrierList(item.name)
+          })
+
+          ul.appendChild(li)
+        })
+
+        div.appendChild(h1)
+        div.appendChild(ul)
+
+        container.appendChild(div)
+      })
+    }
+    const writeValueOnButtonOfCarrierList = (value) =>
+      ValueOfCarrierListButton.html(value ?? getConfigName())
+
+    const showToastContainer = (value) => {
+      Toast.style({ borderColor: "#200d45" })
+      ToastIcon.style({ borderRight: "1px solid #200d45" })
+
+      writeToastText(value)
+
+      ToastContainer.removeClass("misterVpnAnimatedTime", "spaceOutDown")
+      ToastContainer.removeClass("misterVpnAnimatedTime", "spaceInDown")
+
+      setTimeout(() => {
+        ToastContainer.addClass("misterVpnAnimatedTime", "spaceInDown")
+      }, 100)
+
+      clearTimeout(timeoutId)
+
+      timeoutId = setTimeout(() => hiddenToastContainer(), 5000)
+    }
+    const showToastContainerWithError = (value) => {
+      Toast.style({ borderColor: "#FF0000" })
+      ToastIcon.style({ borderRight: "1px solid #FF0000" })
+
+      writeToastText(value)
+
+      ToastContainer.removeClass("misterVpnAnimatedTime", "spaceOutDown")
+      ToastContainer.removeClass("misterVpnAnimatedTime", "spaceInDown")
+
+      setTimeout(() => {
+        ToastContainer.addClass("misterVpnAnimatedTime", "spaceInDown")
+      }, 100)
+
+      clearTimeout(timeoutId)
+      timeoutId = setTimeout(() => hiddenToastContainer(), 5000)
+    }
+    const writeToastText = (text) => {
+      ToastText.html(text)
+    }
+    const hiddenToastContainer = () => {
+      ToastContainer.removeClass("misterVpnAnimatedTime", "spaceInDown")
+      ToastContainer.removeClass("misterVpnAnimatedTime", "spaceOutDown")
+      ToastContainer.addClass("misterVpnAnimatedTime", "spaceOutDown")
+    }
+
+    const showHomeContainer = () => {
+      hiddenAllContainers()
+      HomeContainer.addClass("active")
+    }
+
+    const showCarrierListContainer = () => {
+      writeCarrierList()
+      hiddenAllContainers()
+      CarrierContainer.addClass("active")
+    }
+    const hiddenCarrierListContainer = () => {
+      showHomeContainer()
+    }
+
+    const showProfileContainer = () => {
+      hiddenAllContainers()
+      ProfileContainer.addClass("active")
+    }
+    const hiddenProfileContainer = () => {
+      showHomeContainer()
+    }
+
+    const showToolsContainer = () => {
+      hiddenAllContainers()
+      ToolsContainer.addClass("active")
+    }
+    const hiddenToolsContainer = () => {
+      showHomeContainer()
+    }
+
+    const showRegisterContainer = () => {
+      hiddenAllContainers()
+      RegisterContainer.addClass("active")
+    }
+    const hiddenRegisterContainer = () => {
+      showHomeContainer()
+    }
+
+    const writeErrorContainer = (model) => {
+      const data = JSON.parse(model)
+
+      ErrorTitle.html(data.title)
+      ErrorDescription.html(data.content)
+
+      showErrorContainer()
+    }
+    const showErrorContainer = () => {
+      hiddenAllContainers()
+      ErrorContainer.addClass("active")
+    }
+    const hiddenErrorContainer = () => {
+      showHomeContainer()
+    }
+
+    const showLoadingContainer = () => {
+      const data = JSON.parse(appGetDefaultConfig())
+
+      if (data?.url_check_user) {
+        LoadingContainer.addClass("active")
+      }
+    }
+    const hiddenLoadingContainer = () => {
+      LoadingContainer.removeClass("active")
+    }
+
+    const writeCheckuserContainer = (model) => {
+      const data = JSON.parse(model)
+
+      CheckuserName.html(`USUÁRIO: ${data.username}`)
+      CheckuserRemainingDays.html(`EXPIRA EM: ${data.expiration_date}`)
+      CheckuserRemainingDays.html(`RESTA: ${data.expiration_days} DIAS`)
+      CheckuserTotalConnection.html(
+        `CONEXÕES: ${data.count_connections}/${data.limit_connections}`
+      )
+
+      if (data.expiration_days < 4) {
+        RenewContainer.addClass("active")
+      } else {
+        RenewContainer.removeClass("active")
+      }
+
+      showCheckuserContainer()
+    }
+    const showCheckuserContainer = () => {
+      hiddenLoadingContainer()
+      CheckuserContainer.addClass("active")
+    }
+    const hiddenCheckuserContainer = () => {
+      CheckuserContainer.removeClass("active")
+    }
+
+    const showClearDataAppContainer = () => {
+      ClearDataContainer.addClass("active")
+    }
+    const hiddenClearDataAppContainer = () => {
+      ClearDataContainer.removeClass("active")
+    }
+
+    const startHotspot = () => {
+      appStartHotspot();
+
+      TitleHotspotContainer.removeClass('hotspot-off').addClass('hotspot-on').text("ROTEAMENTO LIGADO");
+      ValueOfButtonHotspotContainer.removeClass('hotspot-off').addClass('hotspot-on').text("DESLIGAR HOTSPOT");
+    }
+
+    const stopHotspot = () => {
+      appStopHotspot();
+
+      TitleHotspotContainer.removeClass('hotspot-on').addClass('hotspot-off').text("ROTEAMENTO DESLIGADO");
+      ValueOfButtonHotspotContainer.removeClass('hotspot-on').addClass('hotspot-off').text("LIGAR HOTSPOT");
+    }
+
+    const toggleHotspot = () => {
+      appGetStatusHotspot() === "STOPPED" ? startHotspot() : stopHotspot();
+    }
+
+    const setStatusHotspot = () => {
+      if (appGetStatusHotspot() === "STOPPED") {
+        TitleHotspotContainer.removeClass('hotspot-on').addClass('hotspot-off').text("ROTEAMENTO DESLIGADO");
+        ValueOfButtonHotspotContainer.removeClass('hotspot-on').addClass('hotspot-off').text("LIGAR HOTSPOT");
+      } else {
+        TitleHotspotContainer.removeClass('hotspot-off').addClass('hotspot-on').text("ROTEAMENTO LIGADO");
+        ValueOfButtonHotspotContainer.removeClass('hotspot-off').addClass('hotspot-on').text("DESLIGAR HOTSPOT");
+      }
+    }
+
+    const showHotspotContainer = () => {
+      HotspotContainer.addClass("active")
+    }
+    const hiddenHotspotContainer = () => {
+      HotspotContainer.removeClass("active")
+    }
+
+    const showTermsContainer = () => {
+      TermsContainer.addClass("active")
+    }
+    const hiddenTermsContainer = () => {
+      TermsContainer.removeClass("active")
+    }
+
+    const openRenew = () => {
+      appIntoBrowser("https://painelrev.cloud/")
+    }
+    const openSpeedtest = () => {
+      appIntoBrowser("https://fast.com")
+    }
+
+    const hiddenAllContainers = () => {
+      HomeContainer.removeClass("active")
+      CarrierContainer.removeClass("active")
+      ProfileContainer.removeClass("active")
+      ToolsContainer.removeClass("active")
+      RegisterContainer.removeClass("active")
+      ErrorContainer.removeClass("active")
+    }
+
+    const allFunctionsExecute = () => {
+      toggleInput()
+      writeInputValue()
+      writeInputPlaceholder()
+      writeLogsRegister()
+      connectionState()
+      setStatusHotspot()
+    }
+
+  </script>
+
+  <!-- AÇÕES -->
+  <script>
+    HomeHeader.style({
+      background: appBackground(),
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      backgroundRepeat: "no-repeat",
+    })
+    LogoHeader.attr({ src: appLogo() })
+
+    ConfigVersion.html(`Versão: ${appGetConfigVersion()}`);
+
+    HomeButton.on({ click: () => showHomeContainer() })
+    LoginButton.on({ click: () => showProfileContainer() })
+    ToolsButton.on({ click: () => showToolsContainer() })
+    UpdateButton.on({ click: () => AppUpdate() })
+
+    BackButtonCarrierContainer.on({
+      click: () => hiddenCarrierListContainer(),
+    })
+    BackProfileContainer.on({ click: () => hiddenProfileContainer() })
+    BackToolsContainer.on({ click: () => hiddenToolsContainer() })
+    BackRegisterContainer.on({ click: () => hiddenRegisterContainer() })
+    BackErrorContainer.on({ click: () => hiddenErrorContainer() })
+
+    ButtonOfCarrierList.on({ click: () => showCarrierListContainer() })
+
+    ValueOfCarrierListButton.html(getConfigName())
+
+    ButtonVpnStartOrStop.on({ click: () => startStopConnection() })
+
+    InputUsername.on({ input: (e) => appSetUsername(e.target.value) })
+    InputPassword.on({ input: (e) => appSetPassword(e.target.value) })
+    InputUUID.on({ input: (e) => appSetUUID(e.target.value) })
+
+    EyeViewPasswordInput.on({ click: () => showInputPasswordValue() })
+    EyeNotViewPasswordInput.on({ click: () => hiddenInputPasswordValue() })
+
+    ButtonSaveCreds.on({ click: () => hiddenProfileContainer() })
+
+    ButtonRegister.on({ click: () => showRegisterContainer() })
+    ButtonCleanRegisterLogs.on({ click: () => appCleanLogs() })
+
+    ButtonOpenHotspotContainer.on({ click: () => showHotspotContainer() })
+    BackHotspotContainer.on({ click: () => hiddenHotspotContainer() })
+    ButtonStartStopHotspot.on({ click: () => toggleHotspot() })
+
+    ButtonOpenClearDataContainer.on({
+      click: () => showClearDataAppContainer(),
+    })
+    BackClearDataContainer.on({ click: () => hiddenClearDataAppContainer() })
+    ButtonConfirmClearData.on({ click: () => appClearData() })
+
+    BackLoadingContainer.on({ click: () => hiddenLoadingContainer() })
+    BackCheckuserContainer.on({ click: () => hiddenCheckuserContainer() })
+
+    BackTermsContainer.on({ click: () => hiddenTermsContainer() })
+
+    ButtonRenew.on({ click: () => openRenew() })
+
+    ButtonOpenSpeedtest.on({ click: () => openSpeedtest() })
+
+    ButtonOpenApnConfig.on({ click: () => appApnConfiguration() })
+
+    ButtonOpenBatteryOptimization.on({ click: () => appBatteryOptimize() })
+
+    ButtonOpenCheckuser.on({ click: () => appStartCheckUser() })
+
+    ButtonOpenTerms.on({ click: () => showTermsContainer() })
+
+    allFunctionsExecute()
+  </script>
 </body>
 
 </html>
