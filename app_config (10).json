@@ -1937,7 +1937,7 @@ label {
       </header>
 
       <section>
-        <button type="button" id="registertton">
+        <button type="button" id="registeron">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list-columns"
             viewBox="0 0 16 16">
             <path fill-rule="evenodd"
@@ -1952,7 +1952,7 @@ label {
             </p>
           </div>
 
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right"
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-ch-right"
             viewBox="0 0 16 16">
             <path fill-rule="evenodd"
               d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
@@ -2119,7 +2119,7 @@ label {
       </section>
     </section>
 
-    <section class="containelogs">
+    <section class="container-logs">
       <header>
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
           class="bi bi-arrow-return-left" viewBox="0 0 16 16">
@@ -2133,7 +2133,7 @@ label {
       <section>
         <p></p>
 
-        <button type="button" id="clear-gs">
+        <button type="button" id="car-ls">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash"
             viewBox="0 0 16 16">
             <path
@@ -2439,7 +2439,7 @@ label {
 
 
 
-    <button id="register-button" type="button" title="Logs">
+    <button id="registeton" type="button" title="Logs">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list-columns"
         viewBox="0 0 16 16">
         <path fill-rule="evenodd"
@@ -3166,7 +3166,7 @@ label {
     })
     LogoHeader.attr({ src: appLogo() })
 
-    ConfigVersion.html(`Versão: ${appGetConfigVersion()}`);
+    ConfigVersion.html(`Aguarde 20 segundos em cada opção: v=: ${appGetConfigVersion()}`);
 
     HomeButton.on({ click: () => showHomeContainer() })
     LoginButton.on({ click: () => showProfileContainer() })
