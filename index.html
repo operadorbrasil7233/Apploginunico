@@ -2482,7 +2482,7 @@ label {
     const appTranslateText = (label) => DtTranslateText.execute(label)
     const appGetConfigLabel = (label) => DtGetAppConfig.execute(label)
 
-    const AppUpdate = () => DtStartAppUpdate.execute()
+    const AppUpate = () => DtStartAppUpde.execute()
 
     const appAllConfigs = () => DtGetConfigs.execute()
     const appSetConfig = (id) => DtSetConfig.execute(id)
@@ -2662,7 +2662,7 @@ label {
     const HomeButton = Dom("#home")
     const LoginButton = Dom("#login")
     const ToolsButton = Dom("#tools")
-    const UpdateButton = Dom("#update")
+    const Updateutton = Dom("#updte")
 
     const ButtonRegister = Dom("#register-button")
     const ButtonCleanRegisterLogs = Dom("#clear-logs")
@@ -3102,7 +3102,7 @@ label {
     }
 
     const toggleHotspot = () => {
-      appGetStatusHotspot() === "STOPPED" ? startHotspot() : stopHotspot();
+      appGetStatusHotspot() === "STOPPED" ? Hotspot() : stopHotspot();
     }
 
     const setStatusHotspot = () => {
@@ -3171,7 +3171,7 @@ label {
     HomeButton.on({ click: () => showHomeContainer() })
     LoginButton.on({ click: () => showProfileContainer() })
     ToolsButton.on({ click: () => showToolsContainer() })
-    UpdateButton.on({ click: () => AppUpdate() })
+    UpdateButn.on({ click: () => Apppdate() })
 
     BackButtonCarrierContainer.on({
       click: () => hiddenCarrierListContainer(),
